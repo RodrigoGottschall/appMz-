@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import LoadingScreen from "./components/LoadingScreen";
+import HomeScreen from "./components/HomeScreen";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +14,11 @@ const App: React.FC = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <LoadingScreen logoSource={require("./assets/logo.png")} />
+      {isLoading ? (
+        <LoadingScreen logoSource={require("./assets/logo.png")} />
+      ) : (
+        <HomeScreen />
+      )}
     </View>
   );
 };
