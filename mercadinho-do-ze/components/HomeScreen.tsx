@@ -1,26 +1,22 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Footer from "./Footer";
 
 const HomeScreen: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Mercadinho do Zé</Text>
-        <View style={styles.searchContainerOuter}>
-          <View style={styles.searchContainer}>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Busca..."
-              onChangeText={setSearchQuery}
-              value={searchQuery}
-            />
-            <View style={styles.searchIconContainer}></View>
-          </View>
-          <Icon name="search" size={20} color="#758494" />
+        <View style={styles.containerOuter}>
+          <Icon name="bell" size={20} color="#F7A833" />
+          <Text style={styles.title}>Mercadinho do Zé</Text>
+          <Icon name="search" size={20} color="#F7A833" />
+        </View>
+        <View style={styles.wineContainer}>
+          <Text style={styles.wineText}>Vinhos</Text>
+          <TouchableOpacity>
+            <Text style={styles.verMaisText}>Ver mais</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <Footer />
@@ -32,56 +28,41 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "space-between",
   },
   header: {
     backgroundColor: "#fff",
-    padding: 20,
+    padding: 10,
     paddingTop: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    paddingBottom: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 10,
     textAlign: "center",
+    color: "#323232",
   },
-  searchContainer: {
+  containerOuter: {
     flexDirection: "row",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    marginRight: 10,
-    maxWidth: "80%",
+    justifyContent: "space-between",
+    marginBottom: 26,
   },
-  searchContainerOuter: {
+  wineContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingLeft: 5,
+    backgroundColor: "#F9F9F9",
   },
-  searchInput: {
-    flex: 1,
-    height: 40,
-    padding: 10,
+  wineText: {
+    fontSize: 12,
+    color: "#323232",
+    fontWeight: "700",
   },
-  searchIconContainer: {
-    paddingHorizontal: 20,
-  },
-  cardContent: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  infoRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  name: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginBottom: 5,
+  verMaisText: {
+    fontSize: 12,
+    color: "#00644B",
+    fontWeight: "700",
   },
 });
 
