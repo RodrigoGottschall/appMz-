@@ -17,7 +17,7 @@ export default {
     },
     androidNavigationBar: {
       barStyle: "dark-content",
-      backgroundColor: "#FFA91E",
+      backgroundColor: "#F7A833",
     },
     updates: {
       fallbackToCacheTimeout: 0,

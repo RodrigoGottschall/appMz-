@@ -1,15 +1,27 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface FooterProps {
-  iconColor?: string;
-  iconSize?: number;
+  onTabPress: (tabName: "Inicio" | "Sacola") => void;
+  activeTab: "Inicio" | "Sacola";
 }
 
-const Footer: React.FC<FooterProps> = ({}) => {
+const Footer: React.FC<FooterProps> = ({ onTabPress }) => {
   return (
     <View style={styles.footer}>
-      <View style={styles.iconButton}></View>
+      <TouchableOpacity onPress={() => onTabPress("Inicio")}>
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="home" size={24} color="#fff" />
+          <Text style={styles.iconLabel}>Início</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => onTabPress("Sacola")}>
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="shopping" size={24} color="#fff" />
+          <Text style={styles.iconLabel}>Sacola</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -19,13 +31,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: 15,
-    borderTopWidth: 1,
-    borderTopColor: "#F7A833",
+    paddingHorizontal: 40,
+    paddingVertical: 15,
     backgroundColor: "#F7A833",
   },
-  iconButton: {
+  iconContainer: {
     alignItems: "center",
+  },
+  iconLabel: {
+    color: "#fff",
+    fontSize: 12,
+    marginTop: 5,
   },
 });
 
