@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Header from "../components/Header";
-import WineTextContainer from "../components/WineTextContainer";
+import Header from "../components/HeaderHome/Header";
+import WineTextContainer from "../components/HeaderHome/WineTextContainer";
 import Footer from "../components/Footer";
 
 const HomeScreen: React.FC = () => {
-  const [activeScreen, setActiveScreen] = useState<"Inicio" | "Sacola">(
-    "Inicio"
-  );
-
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
@@ -16,10 +12,7 @@ const HomeScreen: React.FC = () => {
         <WineTextContainer />
       </View>
       <Text>Home Screen</Text>
-      <Footer
-        onTabPress={(tabName) => setActiveScreen(tabName)}
-        activeTab={activeScreen}
-      />
+      <Footer />
     </View>
   );
 };

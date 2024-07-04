@@ -8,18 +8,14 @@ interface FooterProps {
   activeTab: "Inicio" | "Sacola";
 }
 
-const Footer: React.FC<FooterProps> = ({ onTabPress, activeTab }) => {
+const Footer: React.FC = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.footer}>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <View>
-          <MaterialCommunityIcons
-            name={activeTab === "Home" ? "home-circle" : "home"}
-            size={36}
-            color="#fff"
-          />
+          <MaterialCommunityIcons name={"home-circle"} size={36} color="#fff" />
           <Text style={styles.iconLabel}>Início</Text>
         </View>
       </TouchableOpacity>
