@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Header from "../components/HeaderHome/Header";
+import HeaderHome from "../components/HeaderHome/Header";
 import WineTextContainer from "../components/HeaderHome/WineTextContainer";
 import Footer from "../components/Footer";
 
@@ -8,8 +8,7 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <Header />
-        <WineTextContainer />
+        <HeaderHome />
       </View>
       <Text>Home Screen</Text>
       <Footer />
