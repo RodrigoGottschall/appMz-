@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import WineContContainer from "./WineContContainer";
 
 const HeaderHome: React.FC = () => {
