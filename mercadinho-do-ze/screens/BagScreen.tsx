@@ -15,6 +15,7 @@ const BagScreen: React.FC = () => {
         <Header />
         <WineTextContainer />
       </View>
+      <Text>Sacola screen</Text>
       <Footer
         onTabPress={(tabName) => setActiveScreen(tabName)}
         activeTab={activeScreen}

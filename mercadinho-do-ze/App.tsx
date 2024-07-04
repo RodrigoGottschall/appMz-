@@ -21,7 +21,9 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false, animationEnabled: false }}
+        >
           {isLoading ? (
             <Stack.Screen name="Loading" component={LoadingScreen} />
           ) : (

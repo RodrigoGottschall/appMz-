@@ -15,6 +15,7 @@ const HomeScreen: React.FC = () => {
         <Header />
         <WineTextContainer />
       </View>
+      <Text>Home Screen</Text>
       <Footer
         onTabPress={(tabName) => setActiveScreen(tabName)}
         activeTab={activeScreen}
