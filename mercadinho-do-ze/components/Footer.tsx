@@ -7,12 +7,16 @@ interface FooterProps {
   activeTab: "Inicio" | "Sacola";
 }
 
-const Footer: React.FC<FooterProps> = ({ onTabPress }) => {
+const Footer: React.FC<FooterProps> = ({ onTabPress, activeTab }) => {
   return (
     <View style={styles.footer}>
       <TouchableOpacity onPress={() => onTabPress("Inicio")}>
-        <View style={styles.iconContainer}>
-          <MaterialCommunityIcons name="home" size={24} color="#fff" />
+        <View>
+          <MaterialCommunityIcons
+            name={activeTab === "Inicio" ? "home-circle" : "home"}
+            size={36}
+            color="#fff"
+          />
           <Text style={styles.iconLabel}>Início</Text>
         </View>
       </TouchableOpacity>
@@ -41,7 +45,6 @@ const styles = StyleSheet.create({
   iconLabel: {
     color: "#fff",
     fontSize: 12,
-    marginTop: 5,
   },
 });
 

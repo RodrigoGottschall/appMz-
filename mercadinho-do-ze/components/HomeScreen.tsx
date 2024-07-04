@@ -5,7 +5,9 @@ import WineTextContainer from "./WinteTextContainer";
 import Footer from "./Footer";
 
 const HomeScreen: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("Inicio");
+  const [activeScreen, setActiveScreen] = useState<"Inicio" | "Sacola">(
+    "Inicio"
+  );
 
   return (
     <View style={styles.screen}>
@@ -14,10 +16,8 @@ const HomeScreen: React.FC = () => {
         <WineTextContainer />
       </View>
       <Footer
-        onTabPress={(tabName) => {
-          setActiveTab(tabName);
-        }}
-        activeTab={"Inicio"}
+        onTabPress={(tabName) => setActiveScreen(tabName)}
+        activeTab={activeScreen}
       />
     </View>
   );
