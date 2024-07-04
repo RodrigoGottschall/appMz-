@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Header from "./Header";
-import WineTextContainer from "./WinteTextContainer";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import WineTextContainer from "../components/WineTextContainer";
+import Footer from "../components/Footer";
 
 const HomeScreen: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<"Inicio" | "Sacola">(
