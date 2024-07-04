@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import WineTextContainer from "./WinteTextContainer";
 import Footer from "./Footer";
 
 const HomeScreen: React.FC = () => {
@@ -12,12 +13,7 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.title}>Mercadinho do Zé</Text>
           <Icon name="search" size={20} color="#F7A833" />
         </View>
-        <View style={styles.wineContainer}>
-          <Text style={styles.wineText}>Vinhos</Text>
-          <TouchableOpacity>
-            <Text style={styles.verMaisText}>Ver mais</Text>
-          </TouchableOpacity>
-        </View>
+        <WineTextContainer />
       </View>
       <Footer />
     </View>
