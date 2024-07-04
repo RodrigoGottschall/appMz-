@@ -11,6 +11,14 @@ export default {
       resizeMode: "contain",
       backgroundColor: "#ffffff",
     },
+    androidStatusBar: {
+      barStyle: "light-content",
+      backgroundColor: "#000000",
+    },
+    androidNavigationBar: {
+      barStyle: "dark-content",
+      backgroundColor: "#FFA91E",
+    },
     updates: {
       fallbackToCacheTimeout: 0,
     },
