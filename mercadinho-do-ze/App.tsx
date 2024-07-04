@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Provider } from "react-redux";
 import LoadingScreen from "./screens/LoadingScreen";
 import HomeScreen from "./screens/HomeScreen";
+import BagScreen from "./screens/BagScreen";
 import store from "./store";
-import { Provider } from "react-redux";
+
+const Stack = createStackNavigator();
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,13 +20,18 @@ const App: React.FC = () => {
 
   return (
     <Provider store={store}>
-      <View style={{ flex: 1 }}>
-        {isLoading ? (
-          <LoadingScreen logoSource={require("./assets/logo.png")} />
-        ) : (
-          <HomeScreen />
-        )}
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {isLoading ? (
+            <Stack.Screen name="Loading" component={LoadingScreen} />
+          ) : (
+            <>
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="BagScreen" component={BagScreen} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 };

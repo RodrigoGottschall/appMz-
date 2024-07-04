@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
 
 interface FooterProps {
   onTabPress: (tabName: "Inicio" | "Sacola") => void;
@@ -8,19 +9,21 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onTabPress, activeTab }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => onTabPress("Inicio")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <View>
           <MaterialCommunityIcons
-            name={activeTab === "Inicio" ? "home-circle" : "home"}
+            name={activeTab === "Home" ? "home-circle" : "home"}
             size={36}
             color="#fff"
           />
           <Text style={styles.iconLabel}>Início</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => onTabPress("Sacola")}>
+      <TouchableOpacity onPress={() => navigation.navigate("BagScreen")}>
         <View style={styles.iconContainer}>
           <MaterialCommunityIcons name="shopping" size={24} color="#fff" />
           <Text style={styles.iconLabel}>Sacola</Text>
