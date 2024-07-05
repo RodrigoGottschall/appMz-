@@ -1,11 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 
 const WineTextContainer: React.FC = () => {
+  const handleOpenLink = () => {
+    Linking.openURL("https://www.mercadinhodoze.com.br/");
+  };
+
   return (
     <View style={styles.wineContainer}>
       <Text style={styles.wineText}>Vinhos</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleOpenLink}>
         <Text style={styles.verMaisText}>Ver mais</Text>
       </TouchableOpacity>
     </View>
