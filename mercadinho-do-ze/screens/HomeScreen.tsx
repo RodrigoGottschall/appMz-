@@ -1,15 +1,15 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import HeaderHome from "../components/HomeScreen/Header";
+import Header from "../components/HomeScreen/Header";
 import Footer from "../components/Footer";
-import HomeBody from "../components/HomeScreen/HomeBody";
+import Body from "../components/HomeScreen/HomeBody";
 
 const HomeScreen = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <HeaderHome />
-        <HomeBody />
+        <Header />
+        <Body />
       </View>
       <Footer />
     </View>
