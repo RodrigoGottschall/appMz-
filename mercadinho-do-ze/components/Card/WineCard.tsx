@@ -39,31 +39,32 @@ const WineCard = ({ wine, selectedQuantity, onIncrease, onDecrease }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: "#fff",
     borderRadius: 8,
     padding: 10,
     margin: 5,
-    alignItems: "center", // Alinha os elementos ao centro horizontalmente
   },
   wineImage: {
     width: 100,
     height: 150,
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: 5,
   },
   priceContainer: {
     marginBottom: 5,
   },
   winePrice: {
-    fontSize: 16,
+    fontSize: 10,
     fontWeight: "bold",
+    color: "#00644B",
   },
-  nameContainer: {},
+  nameContainer: {
+    width: 100,
+    flexDirection: "row",
+  },
   wineName: {
-    fontSize: 14,
-    textAlign: "center",
+    flex: 1,
+    fontSize: 8,
   },
-  // ... (estilos para os botões, se necessário)
 });
 
 export default WineCard;

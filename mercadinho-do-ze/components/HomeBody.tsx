@@ -18,7 +18,7 @@ const WineList = () => {
     },
     {
       id: 3,
-      name: "Vinho Rosé Frisante",
+      name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
       price: 52.0,
       image: require("../assets/vinho3.png"),
     },
