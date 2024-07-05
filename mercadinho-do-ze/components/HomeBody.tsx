@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import WineCard from "./Card/WineCard";
 
 const WineList = () => {
@@ -49,6 +55,12 @@ const WineList = () => {
     }, 0);
   };
 
+  const calculateTotalItems = () => {
+    const quantities = Object.values(selectedWines);
+    const validQuantities = quantities.filter((qty) => qty !== undefined);
+    return validQuantities.reduce((total, qty) => total + qty, 0);
+  };
+
   return (
     <View style={styles.bodyContainer}>
       <FlatList
@@ -66,8 +78,15 @@ const WineList = () => {
         )}
       />
       <View style={styles.calculationContainer}>
-        <Text style={styles.totalLabel}>Total:</Text>
-        <Text style={styles.totalPrice}>R$ {calculateTotal().toFixed(2)}</Text>
+        <Text style={styles.totalLabel}>Total</Text>
+        <View style={styles.valueAndItems}>
+          <Text style={styles.totalPrice}>
+            R$ {calculateTotal().toFixed(2)}
+          </Text>
+          <Text style={styles.itemCounterText}>
+            {""} / {calculateTotalItems()} item(s)
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -103,6 +122,27 @@ const styles = StyleSheet.create({
   wineCard: {
     flex: 1,
     margin: 5,
+  },
+  totalContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  itemCounter: {
+    backgroundColor: "#f0f0f0",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginLeft: 8,
+  },
+  itemCounterText: {
+    fontSize: 10,
+    fontWeight: "600",
+    color: "#878786",
+    paddingTop: 4,
+  },
+  valueAndItems: {
+    display: "flex",
+    flexDirection: "row",
   },
 });
 
