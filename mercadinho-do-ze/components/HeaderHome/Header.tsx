@@ -7,9 +7,9 @@ const HeaderHome: React.FC = () => {
   return (
     <>
       <View style={styles.containerOuter}>
-        <Icon name="bell" size={20} color="#F7A833" />
+        <Icon name="bell" size={12} color="#F7A833" />
         <Text style={styles.title}>Mercadinho do Zé</Text>
-        <Icon name="search" size={20} color="#F7A833" />
+        <Icon name="search" size={18} color="#F7A833" />
       </View>
       <WineTextContainer />
     </>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
   },
   title: {
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: "bold",
     textAlign: "center",
     color: "#323232",

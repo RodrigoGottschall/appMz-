@@ -79,21 +79,26 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingBottom: 50,
+    paddingLeft: 18,
     justifyContent: "space-between",
   },
   calculationContainer: {
     paddingTop: 10,
+    paddingLeft: 19,
+    paddingBottom: 14,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
-    backgroundColor: "red",
   },
   totalLabel: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 10,
+    fontWeight: "600",
     marginBottom: 5,
+    color: "#878786",
   },
   totalPrice: {
-    fontSize: 20,
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#494949",
   },
   wineCard: {
     flex: 1,
