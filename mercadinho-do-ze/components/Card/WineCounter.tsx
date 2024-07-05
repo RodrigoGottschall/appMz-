@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 interface WineCounterProps {
@@ -30,70 +30,70 @@ const WineCounter: React.FC<WineCounterProps> = ({
     }
   };
 
-  const containerStyle = useMemo(
-    () => ({
-      ...styles.counterContainer,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-evenly",
-      width: showDecreaseButton ? 100 : 50,
-      backgroundColor: quantity > 0 ? "#FFA91E" : "#FFA91E",
-    }),
-    [showDecreaseButton, quantity]
-  );
+  const containerStyle = showDecreaseButton
+    ? styles.counterContainer
+    : { ...styles.counterContainer, width: 26 };
 
   return (
     <View style={containerStyle}>
-      {showDecreaseButton && (
+      {showDecreaseButton ? (
         <TouchableOpacity onPress={handleDecrease}>
-          <Text style={styles.counterButtonTextDecrease}>-</Text>
+          <Text style={styles.counterButtonText}>-</Text>
         </TouchableOpacity>
-      )}
+      ) : null}
       <Text style={styles.counterQuantity}>
         {quantity > 0 ? `${quantity} UN` : ""}
       </Text>
       <TouchableOpacity onPress={handleIncrease}>
-        <Text style={styles.counterButtonTextIncrease}>+</Text>
+        <View style={styles.buttonContainer}>
+          <Text
+            style={
+              showDecreaseButton
+                ? styles.counterButtonText
+                : styles.singlePlusButton
+            }
+          >
+            +
+          </Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wineCounter: {
+  counterContainer: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: 50,
-    height: 50,
     borderRadius: 25,
     backgroundColor: "#FFA91E",
-  },
-  counterContainer: {
-    width: 26,
-    height: 26,
-    borderRadius: 20,
-    backgroundColor: "#FFA91E",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
+    width: 67,
+    height: 25,
   },
   counterButtonText: {
-    fontSize: 16,
+    fontSize: 15,
+    width: 10,
     fontWeight: "bold",
     color: "#fff",
+    textAlign: "center",
   },
-  counterButtonTextIncrease: {
+  singlePlusButton: {
+    width: 18,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlignVertical: "center",
     color: "#fff",
-  },
-  counterButtonTextDecrease: {
-    color: "#fff",
-    paddingRight: 12,
   },
   counterQuantity: {
-    fontSize: 14,
+    fontSize: 10,
     marginHorizontal: 5,
     color: "#fff",
-    position: "absolute",
+  },
+  buttonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
