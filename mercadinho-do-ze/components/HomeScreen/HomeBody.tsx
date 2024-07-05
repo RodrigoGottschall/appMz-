@@ -82,15 +82,23 @@ const HomeBody = () => {
       />
 
       <View style={styles.calculationContainer}>
-        <Text style={styles.totalLabel}>Total</Text>
-        <View style={styles.valueAndItems}>
-          <Text style={styles.totalPrice}>
-            R$ {calculateTotal().toFixed(2)}
-          </Text>
-          <Text style={styles.itemCounterText}>
-            {""} / {calculateTotalItems()} item(s)
-          </Text>
+        <View style={styles.totalContainer}>
+          <Text style={styles.totalLabel}>Total</Text>
+          <View style={styles.valueAndItems}>
+            <Text style={styles.totalPrice}>
+              R$ {calculateTotal().toFixed(2)}
+            </Text>
+            <Text style={styles.itemCounterText}>
+              {""} / {calculateTotalItems()} item(s)
+            </Text>
+          </View>
         </View>
+        <TouchableOpacity
+          style={styles.sacolaButton}
+          onPress={() => navigation.navigate("BagScreen")}
+        >
+          <Text style={styles.sacolaButtonText}>Ver Sacola</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -106,6 +114,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   calculationContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingTop: 10,
     paddingLeft: 19,
     paddingBottom: 14,
@@ -128,8 +139,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   totalContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   itemCounter: {
     backgroundColor: "#f0f0f0",
@@ -147,6 +157,20 @@ const styles = StyleSheet.create({
   valueAndItems: {
     display: "flex",
     flexDirection: "row",
+  },
+  sacolaButton: {
+    backgroundColor: "#F7A833",
+    width: 104,
+    height: 30,
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 17,
+  },
+  sacolaButtonText: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "800",
   },
 });
 
