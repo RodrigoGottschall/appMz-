@@ -58,6 +58,12 @@ const HomeBody = () => {
     }, 0);
   };
 
+  const calculateTotalItems = () => {
+    const quantities = Object.values(selectedWines);
+    const validQuantities = quantities.filter((qty) => qty !== undefined);
+    return validQuantities.reduce((total, qty) => total + qty, 0);
+  };
+
   return (
     <View style={styles.bodyContainer}>
       <FlatList
@@ -76,19 +82,15 @@ const HomeBody = () => {
       />
 
       <View style={styles.calculationContainer}>
-        <View style={styles.totalContainer}>
-          <Text style={styles.totalLabel}>Total</Text>
+        <Text style={styles.totalLabel}>Total</Text>
+        <View style={styles.valueAndItems}>
           <Text style={styles.totalPrice}>
             R$ {calculateTotal().toFixed(2)}
           </Text>
+          <Text style={styles.itemCounterText}>
+            {""} / {calculateTotalItems()} item(s)
+          </Text>
         </View>
-
-        <TouchableOpacity
-          style={styles.sacolaButton}
-          onPress={() => navigation.navigate("BagScreen")}
-        >
-          <Text style={styles.sacolaButtonText}>Ver Sacola</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -104,21 +106,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   calculationContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     paddingTop: 10,
     paddingLeft: 19,
     paddingBottom: 14,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
   },
-  totalContainer: {
-    alignItems: "flex-start",
-  },
   totalLabel: {
     fontSize: 10,
     fontWeight: "600",
+    marginBottom: 5,
     color: "#878786",
   },
   totalPrice: {
@@ -126,19 +123,30 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#494949",
   },
-  sacolaButton: {
-    backgroundColor: "#F7A833",
-    width: 104,
-    height: 30,
-    borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 17,
+  wineCard: {
+    flex: 1,
+    margin: 5,
   },
-  sacolaButtonText: {
-    color: "#FFFFFF",
-    fontSize: 12,
-    fontWeight: "800",
+  totalContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  itemCounter: {
+    backgroundColor: "#f0f0f0",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginLeft: 8,
+  },
+  itemCounterText: {
+    fontSize: 10,
+    fontWeight: "600",
+    color: "#878786",
+    paddingTop: 4,
+  },
+  valueAndItems: {
+    display: "flex",
+    flexDirection: "row",
   },
 });
 
