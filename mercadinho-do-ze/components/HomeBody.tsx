@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import WineCard from "./Card/WineCard"; // Certifique-se de que o caminho está correto
+import WineCard from "./Card/WineCard";
 
 const WineList = () => {
   const wines = [
     {
       id: 1,
-      name: "Vinho Tinto Seco",
-      price: 49.9,
+      name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
+      price: 19.49,
       image: require("../assets/vinho1.png"),
     },
     {
       id: 2,
-      name: "Vinho Branco Suave",
-      price: 35.5,
+      name: "Vinho Brasileiro Pergola Seco Tinto 1L",
+      price: 15.99,
       image: require("../assets/vinho2.png"),
     },
     {
       id: 3,
       name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
-      price: 52.0,
+      price: 7.99,
       image: require("../assets/vinho3.png"),
     },
   ];
@@ -54,7 +54,7 @@ const WineList = () => {
       <FlatList
         data={wines}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
+        numColumns={3}
         contentContainerStyle={styles.flatListContent}
         renderItem={({ item }) => (
           <WineCard

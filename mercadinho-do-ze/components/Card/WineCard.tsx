@@ -40,12 +40,14 @@ const WineCard = ({ wine, selectedQuantity, onIncrease, onDecrease }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     borderRadius: 8,
-    padding: 10,
-    margin: 5,
+    width: 125,
+    height: 103,
+    paddingTop: 16,
+    paddingLeft: 13,
   },
   wineImage: {
-    width: 100,
-    height: 150,
+    width: 68,
+    height: 66,
     resizeMode: "contain",
     marginBottom: 5,
   },
