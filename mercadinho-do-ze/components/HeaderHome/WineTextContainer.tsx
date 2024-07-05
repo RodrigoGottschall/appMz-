@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#F9F9F9",
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   wineText: {
     fontSize: 12,

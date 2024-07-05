@@ -74,16 +74,18 @@ const WineList = () => {
 };
 
 const styles = StyleSheet.create({
-  bodyContainer: {},
+  bodyContainer: {
+    height: 700,
+  },
   flatListContent: {
-    paddingHorizontal: 10,
-    paddingBottom: 20,
+    paddingBottom: 50,
     justifyContent: "space-between",
   },
   calculationContainer: {
-    padding: 20,
+    paddingTop: 10,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
+    backgroundColor: "red",
   },
   totalLabel: {
     fontSize: 18,
