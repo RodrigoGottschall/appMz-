@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import HeaderBag from "../components/HeaderBag/Header";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import HeaderBag from "../components/BagScreen/Header";
 import Footer from "../components/Footer";
 
 const BagScreen: React.FC = () => {

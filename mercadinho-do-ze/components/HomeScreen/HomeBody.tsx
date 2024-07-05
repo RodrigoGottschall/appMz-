@@ -17,19 +17,19 @@ const HomeBody = () => {
       id: 1,
       name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
       price: 19.49,
-      image: require("../assets/vinho1.png"),
+      image: require("../../assets/vinho1.png"),
     },
     {
       id: 2,
       name: "Vinho Brasileiro Pergola Seco Tinto 1L",
       price: 15.99,
-      image: require("../assets/vinho2.png"),
+      image: require("../../assets/vinho2.png"),
     },
     {
       id: 3,
       name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
       price: 7.99,
-      image: require("../assets/vinho3.png"),
+      image: require("../../assets/vinho3.png"),
     },
   ];
 

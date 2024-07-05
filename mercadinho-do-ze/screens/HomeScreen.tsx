@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import HeaderHome from "../components/HeaderHome/Header";
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import HeaderHome from "../components/HomeScreen/Header";
 import Footer from "../components/Footer";
-import HomeBody from "../components/HomeBody";
+import HomeBody from "../components/HomeScreen/HomeBody";
 
 const HomeScreen = () => {
   return (
