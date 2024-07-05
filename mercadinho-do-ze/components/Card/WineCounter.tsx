@@ -35,6 +35,7 @@ const WineCounter: React.FC<WineCounterProps> = ({
       ...styles.counterContainer,
       flexDirection: "row",
       alignItems: "center",
+      justifyContent: "space-evenly",
       width: showDecreaseButton ? 100 : 50,
       backgroundColor: quantity > 0 ? "#FFA91E" : "#FFA91E",
     }),
@@ -44,15 +45,15 @@ const WineCounter: React.FC<WineCounterProps> = ({
   return (
     <View style={containerStyle}>
       {showDecreaseButton && (
-        <TouchableOpacity onPress={handleDecrease} style={styles.counterButton}>
-          <Text style={styles.counterButtonText}>-</Text>
+        <TouchableOpacity onPress={handleDecrease}>
+          <Text style={styles.counterButtonTextDecrease}>-</Text>
         </TouchableOpacity>
       )}
       <Text style={styles.counterQuantity}>
         {quantity > 0 ? `${quantity} UN` : ""}
       </Text>
-      <TouchableOpacity onPress={handleIncrease} style={styles.counterButton}>
-        <Text style={styles.counterButtonText}>+</Text>
+      <TouchableOpacity onPress={handleIncrease}>
+        <Text style={styles.counterButtonTextIncrease}>+</Text>
       </TouchableOpacity>
     </View>
   );
@@ -70,29 +71,29 @@ const styles = StyleSheet.create({
   counterContainer: {
     width: 26,
     height: 26,
-    borderRadius: 13, // Borda mais arredondada
-    backgroundColor: "#FFA91E", // Cor de fundo fixa
+    borderRadius: 20,
+    backgroundColor: "#FFA91E",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1, // Adiciona borda
-    borderColor: "#fff", // Cor da borda
-  },
-
-  counterButton: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 3,
-    backgroundColor: "#8B0000", // Cor de fundo vermelho mais escuro
+    position: "absolute",
   },
   counterButtonText: {
-    fontSize: 16, // Aumenta o tamanho da fonte
-    fontWeight: "bold", // Texto em negrito
+    fontSize: 16,
+    fontWeight: "bold",
     color: "#fff",
+  },
+  counterButtonTextIncrease: {
+    color: "#fff",
+  },
+  counterButtonTextDecrease: {
+    color: "#fff",
+    paddingRight: 12,
   },
   counterQuantity: {
     fontSize: 14,
     marginHorizontal: 5,
     color: "#fff",
+    position: "absolute",
   },
 });
 
