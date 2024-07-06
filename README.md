@@ -13,9 +13,10 @@
 ## Como começar?
 
 1. Clone o repositório: git clone https://github.com/RodrigoGottschall/appMz-.git
-2. Instale as dependências: npm install ou yarn install
-3. Inicie o aplicativo: npx expo start ou yarn start
-4. Aproveite a liberdade: Baixe o app Expo Go no seu celular e escaneie o QR Code para testar o app.
+2. Acesse o diretório através do terminal e pelos comandos `cd mercadinho-do-ze`
+3. Instale as dependências: `npm install ou yarn install`
+4. Inicie o aplicativo: `npx expo start ou yarn start`
+5. Aproveite a liberdade: Baixe o app Expo Go no seu celular e escaneie o QR Code para testar o app.
 
 Dúvidas?
 
