@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import HeaderBag from "../components/BagScreen/Header";
+import Body from "../components/BagScreen/Body";
 import Footer from "../components/Footer";
 import { useWineContext, WineItem } from "../context/WineContext";
 import CartItemCard from "../components/BagScreen/CartItemCard";
@@ -59,6 +60,7 @@ const BagScreen: React.FC = () => {
             renderItem={renderItem}
           />
         )}
+        <Body />
       </View>
       <Footer />
     </View>

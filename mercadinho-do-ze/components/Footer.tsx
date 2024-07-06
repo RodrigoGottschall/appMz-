@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 15,
     backgroundColor: "#F7A833",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   iconContainer: {
     alignItems: "center",
