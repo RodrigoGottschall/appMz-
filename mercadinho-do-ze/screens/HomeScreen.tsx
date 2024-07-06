@@ -4,7 +4,7 @@ import Header from "../components/HomeScreen/Header";
 import Footer from "../components/Footer";
 import Body from "../components/HomeScreen/Body";
 import { useWineContext, WineItem } from "../context/WineContext";
-import { CounterProvider } from "../context/CounterContext";
+
 import LoadingScreen from "./LoadingScreen";
 
 const HomeScreen = () => {

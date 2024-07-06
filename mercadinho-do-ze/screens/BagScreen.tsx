@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 import Header from "../components/BagScreen/Header";
 import Body from "../components/BagScreen/Body";
@@ -7,39 +7,45 @@ import { useWineContext, WineItem } from "../context/WineContext";
 import CartItemCard from "../components/BagScreen/CartItemCard";
 
 const BagScreen: React.FC = () => {
-  const { cartItems, addToCart, removeFromCart } = useWineContext();
-  const [_, setForceUpdate] = useState(0);
-
-  useEffect(() => {
-    setForceUpdate((prev) => prev + 1);
-  }, [cartItems]);
+  const { cartItems, addToCart, removeFromCart, setCartItems } =
+    useWineContext();
 
   const handleRemoveFromCart = (item: WineItem) => {
     removeFromCart(item);
   };
 
   const handleIncreaseQuantity = (item: WineItem) => {
-    addToCart({ ...item, quantity: 1 });
+    addToCart(item);
   };
 
   const handleDecreaseQuantity = (item: WineItem) => {
-    if (item.quantity > 1) {
-      addToCart({ ...item, quantity: -1 });
-    } else {
-      removeFromCart(item);
+    const existingItemIndex = cartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (existingItemIndex !== -1) {
+      const updatedItem = { ...cartItems[existingItemIndex] };
+      if (updatedItem.quantity > 1) {
+        updatedItem.quantity--;
+        setCartItems((prevCartItems) => [
+          ...prevCartItems.slice(0, existingItemIndex),
+          updatedItem,
+          ...prevCartItems.slice(existingItemIndex + 1),
+        ]);
+      } else {
+        removeFromCart(item);
+      }
     }
   };
 
-  const renderItem = ({ item }) => {
-    return (
-      <CartItemCard
-        item={item}
-        onRemove={() => handleRemoveFromCart(item)}
-        onIncrease={() => handleIncreaseQuantity(item)}
-        onDecrease={() => handleDecreaseQuantity(item)}
-      />
-    );
-  };
+  const renderItem = ({ item }) => (
+    <CartItemCard
+      item={item}
+      onRemove={() => handleRemoveFromCart(item)}
+      onIncrease={() => handleIncreaseQuantity(item)}
+      onDecrease={() => handleDecreaseQuantity(item)}
+    />
+  );
 
   return (
     <View style={styles.screen}>

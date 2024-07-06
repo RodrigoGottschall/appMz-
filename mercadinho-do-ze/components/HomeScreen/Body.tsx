@@ -9,43 +9,52 @@ import {
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
 import { useWineContext } from "../../context/WineContext";
-import { useCounterContext } from "../../context/CounterContext";
+
+export const wines = [
+  {
+    id: 1,
+    name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
+    price: 19.49,
+    image: require("../../assets/vinho1.png"),
+  },
+  {
+    id: 2,
+    name: "Vinho Brasileiro Pergola Seco Tinto 1L",
+    price: 15.99,
+    image: require("../../assets/vinho2.png"),
+  },
+  {
+    id: 3,
+    name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
+    price: 7.99,
+    image: require("../../assets/vinho3.png"),
+  },
+];
 
 const Body: React.FC = () => {
   const navigation = useNavigation();
-  const { addToCart } = useWineContext();
-  const { selectedWines, setSelectedWines } = useCounterContext();
-
-  const prevSelectedWines = useRef(selectedWines);
-
-  const wines = [
-    {
-      id: 1,
-      name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
-      price: 19.49,
-      image: require("../../assets/vinho1.png"),
-    },
-    {
-      id: 2,
-      name: "Vinho Brasileiro Pergola Seco Tinto 1L",
-      price: 15.99,
-      image: require("../../assets/vinho2.png"),
-    },
-    {
-      id: 3,
-      name: "Vinho Brasileiro Parreiras do Sul Suave Tinto 1l",
-      price: 7.99,
-      image: require("../../assets/vinho3.png"),
-    },
-  ];
+  const { addToCart, cartItems } = useWineContext();
+  const { selectedWines, setSelectedWines } = useWineContext();
 
   const handleWinePress = (wineId: number) => {
-    setSelectedWines((prevSelected) => ({
-      ...prevSelected,
-      [wineId]: (prevSelected[wineId] || 0) + 1,
-    }));
-  };
+    setSelectedWines((prevSelected) => {
+      const updatedSelectedWines = {
+        ...prevSelected,
+        [wineId]: (prevSelected[wineId] || 0) + 1,
+      };
 
+      const wineItem = wines.find((wine) => wine.id === wineId);
+      if (wineItem && !cartItems.some((item) => item.id === wineItem.id)) {
+        addToCart({
+          ...wineItem,
+          quantity: updatedSelectedWines[wineId],
+          uniqueId: Date.now(),
+        });
+      }
+
+      return updatedSelectedWines;
+    });
+  };
   const handleDecrease = (wineId: number) => {
     setSelectedWines((prevSelected) => {
       const newQuantity = (prevSelected[wineId] || 0) - 1;
@@ -73,21 +82,6 @@ const Body: React.FC = () => {
     );
   };
 
-  useEffect(() => {
-    if (prevSelectedWines.current !== selectedWines) {
-      for (const wineId in selectedWines) {
-        const quantity = selectedWines[wineId];
-        if (quantity > 0) {
-          const wineItem = wines.find((wine) => wine.id === parseInt(wineId));
-          if (wineItem) {
-            addToCart({ ...wineItem, quantity });
-          }
-        }
-      }
-      prevSelectedWines.current = selectedWines;
-    }
-  }, [addToCart, wines]);
-
   return (
     <View style={styles.bodyContainer}>
       <FlatList
@@ -104,7 +98,6 @@ const Body: React.FC = () => {
           />
         )}
       />
-
       <View style={styles.calculationContainer}>
         <View style={styles.totalContainer}>
           <Text style={styles.totalLabel}>Total</Text>
@@ -112,13 +105,12 @@ const Body: React.FC = () => {
             <Text style={styles.totalPrice}>
               R$ {calculateTotal().toFixed(2)}
             </Text>
+
             <Text style={styles.itemCounterText}>
-              {" "}
               / {calculateTotalItems()} item(s)
             </Text>
           </View>
         </View>
-
         <TouchableOpacity
           style={styles.sacolaButton}
           onPress={() => navigation.navigate("BagScreen")}
