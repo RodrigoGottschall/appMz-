@@ -9,7 +9,6 @@ import {
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
 import { useWineContext } from "../../context/WineContext";
-import { WineCardProps } from "../../context/WineContext";
 
 export const wines = [
   {
