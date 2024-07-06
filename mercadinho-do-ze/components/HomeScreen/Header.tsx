@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Fundo transparente
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
     backgroundColor: "white",
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   closeButton: {
-    color: "#F7A833", // Use a cor do seu tema
+    color: "#F7A833",
   },
 });
 

@@ -114,12 +114,12 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
         return updatedCartItems;
       }
 
-      return prevCartItems; // Retorna o carrinho original se o item não for encontrado
+      return prevCartItems;
     });
 
     setSelectedWines((prevSelectedWines) => {
       const newSelectedWines = { ...prevSelectedWines };
-      delete newSelectedWines[item.id]; // Remove o item de selectedWines
+      delete newSelectedWines[item.id];
       return newSelectedWines;
     });
   };

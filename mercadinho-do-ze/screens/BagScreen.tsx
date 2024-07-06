@@ -36,25 +36,23 @@ const BagScreen: React.FC = () => {
         const existingItem = updatedCartItems[existingItemIndex];
 
         if (existingItem.quantity > 1) {
-          // Se a quantidade for maior que 1, decrementa a quantidade
           updatedCartItems[existingItemIndex] = {
             ...existingItem,
             quantity: existingItem.quantity - 1,
           };
         } else {
-          // Se a quantidade for 1, remove o item do carrinho
           updatedCartItems.splice(existingItemIndex, 1);
         }
 
         return updatedCartItems;
       }
 
-      return prevCartItems; // Retorna o carrinho original se o item não for encontrado
+      return prevCartItems;
     });
 
     setSelectedWines((prev) => ({
       ...prev,
-      [item.id]: Math.max(0, (prev[item.id] || 0) - 1), // Atualiza a quantidade em selectedWines
+      [item.id]: Math.max(0, (prev[item.id] || 0) - 1),
     }));
   };
 
@@ -62,8 +60,8 @@ const BagScreen: React.FC = () => {
     <CartItemCard
       item={item}
       onRemove={() => handleRemoveFromCart(item)}
-      onIncrease={() => handleIncreaseQuantity(item)} // Passar a função handleIncreaseQuantity
-      onDecrease={() => handleDecreaseQuantity(item)} // Passar a função handleDecreaseQuantity
+      onIncrease={() => handleIncreaseQuantity(item)}
+      onDecrease={() => handleDecreaseQuantity(item)}
     />
   );
 
