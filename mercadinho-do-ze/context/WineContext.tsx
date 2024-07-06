@@ -54,6 +54,10 @@ export interface CartItemCardProps {
   onDecrease: () => void;
 }
 
+export interface LoadingScreenProps {
+  logoSource: { uri: string };
+}
+
 const WineContext = createContext<WineContextType | undefined>(undefined);
 
 export const WineProvider: React.FC<{ children: React.ReactNode }> = ({

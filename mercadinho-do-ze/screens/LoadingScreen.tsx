@@ -8,10 +8,7 @@ import {
   NativeSyntheticEvent,
   ImageErrorEventData,
 } from "react-native";
-
-interface LoadingScreenProps {
-  logoSource: { uri: string };
-}
+import { LoadingScreenProps } from "../context/WineContext";
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ logoSource }) => {
   const handleImageError = (
