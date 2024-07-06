@@ -4,11 +4,6 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import IonIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
-interface FooterProps {
-  onTabPress: (tabName: "Inicio" | "Sacola") => void;
-  activeTab: "Inicio" | "Sacola";
-}
-
 const Footer: React.FC = () => {
   const navigation = useNavigation();
 
