@@ -1,13 +1,17 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 interface CartItemCardProps {
   item: {
+    id: number; // Ou wineId: number;
     name: string;
     price: number;
     image: any;
     quantity: number;
   };
+  onRemove: () => void;
+  onIncrease: () => void;
+  onDecrease: () => void;
 }
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
@@ -42,11 +46,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 11,
+    fontWeight: "400",
+    textTransform: "uppercase",
   },
   price: {
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: "700",
     color: "#333",
   },
   quantityContainer: {

@@ -12,6 +12,7 @@ interface WineContextType {
   cartItems: WineItem[];
   addToCart: (item: WineItem) => void;
   removeFromCart: (item: WineItem) => void;
+  removeAllItems: () => void;
 }
 
 const WineContext = createContext<WineContextType | undefined>(undefined);
@@ -43,14 +44,12 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const removeFromCart = (item: WineItem) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.filter((cartItem) => cartItem.id !== item.id)
-    );
+  const removeAllItems = () => {
+    setCartItems([]); // Limpa o array cartItems
   };
 
   return (
-    <WineContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <WineContext.Provider value={{ cartItems, addToCart, removeAllItems }}>
       {children}
     </WineContext.Provider>
   );

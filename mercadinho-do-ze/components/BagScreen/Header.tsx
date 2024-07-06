@@ -1,14 +1,34 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import WineContContainer from "./WineContContainer";
+import { useWineContext } from "../../context/WineContext";
 
-const HeaderHome: React.FC = () => {
+interface CartItemCardProps {
+  item: {
+    id: number;
+    name: string;
+    price: number;
+    image: any;
+    quantity: number;
+  };
+  onRemove: () => void;
+  onIncrease: () => void;
+  onDecrease: () => void;
+}
+
+const Header: React.FC = () => {
+  const { removeAllItems } = useWineContext();
+
+  const handleRemoveAll = () => {
+    removeAllItems();
+  };
+
   return (
     <>
       <View style={styles.containerOuter}>
         <View style={styles.content}>
           <Text style={[styles.title, styles.absoluteCenter]}>Sacola</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleRemoveAll}>
             <Text style={styles.bagClean}>Limpar sacola</Text>
           </TouchableOpacity>
         </View>
@@ -49,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderHome;
+export default Header;

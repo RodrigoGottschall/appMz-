@@ -115,7 +115,6 @@ const Body = () => {
             </Text>
           </View>
         </View>
-        {/* Botão "Ver Sacola" */}
         <TouchableOpacity
           style={styles.sacolaButton}
           onPress={() => navigation.navigate("BagScreen")}
