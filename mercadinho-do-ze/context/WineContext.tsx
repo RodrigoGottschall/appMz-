@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from "react";
+import { useCounterContext } from "./CounterContext";
 
-interface WineItem {
+export interface WineItem {
   id: number;
   name: string;
   price: number;
@@ -21,6 +22,7 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cartItems, setCartItems] = useState<WineItem[]>([]);
+  const { setSelectedWines } = useCounterContext();
 
   const addToCart = (item: WineItem) => {
     setCartItems((prevCartItems) => {
@@ -29,27 +31,32 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (existingItemIndex > -1) {
-        // Item já existe no carrinho, atualize a quantidade
-        const updatedCartItems = [...prevCartItems];
-        updatedCartItems[existingItemIndex] = {
-          ...updatedCartItems[existingItemIndex],
-          quantity:
-            updatedCartItems[existingItemIndex].quantity + item.quantity,
-        };
-        return updatedCartItems;
+        return prevCartItems.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
       } else {
-        // Item é novo, adicione ao carrinho
         return [...prevCartItems, item];
       }
     });
   };
 
+  const removeFromCart = (item: WineItem) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((cartItem) => cartItem.id !== item.id)
+    );
+  };
+
   const removeAllItems = () => {
-    setCartItems([]); // Limpa o array cartItems
+    setCartItems([]);
+    setSelectedWines({});
   };
 
   return (
-    <WineContext.Provider value={{ cartItems, addToCart, removeAllItems }}>
+    <WineContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, removeAllItems }}
+    >
       {children}
     </WineContext.Provider>
   );

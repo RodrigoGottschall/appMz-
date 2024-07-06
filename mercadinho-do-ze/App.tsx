@@ -5,6 +5,7 @@ import LoadingScreen from "./screens/LoadingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import BagScreen from "./screens/BagScreen";
 import { WineProvider } from "./context/WineContext";
+import { CounterProvider } from "./context/CounterContext";
 
 const Stack = createStackNavigator();
 
@@ -18,22 +19,18 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <WineProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{ headerShown: false, animationEnabled: false }}
-        >
-          {isLoading ? (
-            <Stack.Screen name="Loading" component={LoadingScreen} />
-          ) : (
-            <>
-              <Stack.Screen name="Home" component={HomeScreen} />
-              <Stack.Screen name="BagScreen" component={BagScreen} />
-            </>
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </WineProvider>
+    <CounterProvider>
+      <WineProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{ headerShown: false, animationEnabled: false }}
+          >
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="BagScreen" component={BagScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </WineProvider>
+    </CounterProvider>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -9,15 +9,15 @@ import {
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
 import { useWineContext } from "../../context/WineContext";
+import { useCounterContext } from "../../context/CounterContext";
 
-const Body = () => {
-  // Hook de navegação para ir para a tela BagScreen
+const Body: React.FC = () => {
   const navigation = useNavigation();
-
-  // Obtém a função addToCart do contexto WineContext
   const { addToCart } = useWineContext();
+  const { selectedWines, setSelectedWines } = useCounterContext();
 
-  // Dados dos vinhos (substitua com seus próprios dados)
+  const prevSelectedWines = useRef(selectedWines);
+
   const wines = [
     {
       id: 1,
@@ -39,36 +39,26 @@ const Body = () => {
     },
   ];
 
-  // Estado para armazenar a quantidade de cada vinho selecionado
-  const [selectedWines, setSelectedWines] = useState({});
-
-  // Função chamada quando o usuário pressiona um card de vinho
   const handleWinePress = (wineId: number) => {
-    // Atualiza o estado selectedWines para aumentar a quantidade do vinho selecionado
     setSelectedWines((prevSelected) => ({
       ...prevSelected,
       [wineId]: (prevSelected[wineId] || 0) + 1,
     }));
-
-    // Encontra o vinho correspondente ao wineId
-    const wineItem = wines.find((wine) => wine.id === wineId);
-    if (wineItem) {
-      // Adiciona o vinho ao carrinho com a quantidade atualizada
-      addToCart({ ...wineItem, quantity: selectedWines[wineId] || 0 });
-    }
   };
 
-  // Função chamada quando o usuário diminui a quantidade de um vinho
   const handleDecrease = (wineId: number) => {
     setSelectedWines((prevSelected) => {
       const newQuantity = (prevSelected[wineId] || 0) - 1;
-      return newQuantity > 0
-        ? { ...prevSelected, [wineId]: newQuantity }
-        : { ...prevSelected, [wineId]: undefined };
+
+      if (newQuantity === 0) {
+        const { [wineId]: _, ...rest } = prevSelected;
+        return rest;
+      } else {
+        return { ...prevSelected, [wineId]: newQuantity };
+      }
     });
   };
 
-  // Função para calcular o preço total dos vinhos selecionados
   const calculateTotal = () => {
     return wines.reduce((total, wine) => {
       const quantity = selectedWines[wine.id] || 0;
@@ -76,16 +66,30 @@ const Body = () => {
     }, 0);
   };
 
-  // Função para calcular o total de itens selecionados
   const calculateTotalItems = () => {
-    const quantities = Object.values(selectedWines);
-    const validQuantities = quantities.filter((qty) => qty !== undefined);
-    return validQuantities.reduce((total, qty) => total + qty, 0);
+    return Object.values(selectedWines).reduce(
+      (total, quantity) => total + (quantity || 0),
+      0
+    );
   };
+
+  useEffect(() => {
+    if (prevSelectedWines.current !== selectedWines) {
+      for (const wineId in selectedWines) {
+        const quantity = selectedWines[wineId];
+        if (quantity > 0) {
+          const wineItem = wines.find((wine) => wine.id === parseInt(wineId));
+          if (wineItem) {
+            addToCart({ ...wineItem, quantity });
+          }
+        }
+      }
+      prevSelectedWines.current = selectedWines;
+    }
+  }, [addToCart, wines]);
 
   return (
     <View style={styles.bodyContainer}>
-      {/* Lista plana para exibir os cards de vinho */}
       <FlatList
         data={wines}
         keyExtractor={(item) => item.id.toString()}
@@ -101,7 +105,6 @@ const Body = () => {
         )}
       />
 
-      {/* Container para exibir o total e o botão "Ver Sacola" */}
       <View style={styles.calculationContainer}>
         <View style={styles.totalContainer}>
           <Text style={styles.totalLabel}>Total</Text>
@@ -115,6 +118,7 @@ const Body = () => {
             </Text>
           </View>
         </View>
+
         <TouchableOpacity
           style={styles.sacolaButton}
           onPress={() => navigation.navigate("BagScreen")}

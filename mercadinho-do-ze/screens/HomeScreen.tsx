@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Header from "../components/HomeScreen/Header";
 import Footer from "../components/Footer";
 import Body from "../components/HomeScreen/Body";
 import { useWineContext, WineItem } from "../context/WineContext";
+import { CounterProvider } from "../context/CounterContext";
+import LoadingScreen from "./LoadingScreen";
 
 const HomeScreen = () => {
-  const { addToCart } = useWineContext();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleAddToCart = (wineItem: WineItem) => {
-    addToCart(wineItem);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <View style={styles.screen}>
-      <View style={styles.container}>
-        <Header />
-        <Body />
-      </View>
+      {isLoading ? (
+        <LoadingScreen
+          logoSource={{
+            uri: "../assets/logo/png",
+          }}
+        />
+      ) : (
+        <View style={styles.container}>
+          <Header />
+          <Body />
+        </View>
+      )}
       <Footer />
     </View>
   );
