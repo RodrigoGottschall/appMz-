@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { WineCounterProps } from "../../context/WineContext"; // Certifique-se de que o caminho está correto
+import { WineCounterProps } from "../../context/WineContext";
 
 const Counter: React.FC<WineCounterProps> = ({
-  wineId,
   onIncrease,
   onDecrease,
   onPress,

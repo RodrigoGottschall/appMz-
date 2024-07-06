@@ -19,6 +19,7 @@ export interface WineContextType {
   >;
   setCartItems: React.Dispatch<React.SetStateAction<WineItem[]>>;
 }
+
 export interface WineCardProps {
   wine: {
     id: number;
@@ -112,10 +113,11 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
       return prevCartItems; // Retorna o carrinho original se o item não for encontrado
     });
 
-    setSelectedWines((prev) => ({
-      ...prev,
-      [item.id]: Math.max(0, (prev[item.id] || 0) - 1), // Atualiza a quantidade em selectedWines
-    }));
+    setSelectedWines((prevSelectedWines) => {
+      const newSelectedWines = { ...prevSelectedWines };
+      delete newSelectedWines[item.id]; // Remove o item de selectedWines
+      return newSelectedWines;
+    });
   };
 
   const removeAllItems = () => {

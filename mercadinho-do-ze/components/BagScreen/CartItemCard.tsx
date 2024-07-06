@@ -5,6 +5,7 @@ import Counter from "./Counter";
 
 const CartItemCard: React.FC<CartItemCardProps> = ({
   item,
+  onRemove,
   onIncrease,
   onDecrease,
 }) => {
