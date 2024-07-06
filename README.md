@@ -24,6 +24,6 @@ Entre em contato com nosso suporte pelo e-mail [ro_criscuolo@hotmail.com]
 
 ### Não perca tempo! Comece agora mesmo a transformar seu sonho em realidade com o Mercadinho do Zé!
 
-! [https://www.mercadinhodoze.com.br/wp-content/uploads/2023/07/Frame-107402-1.webp]
+![Imagem de um celular como se fosse um mercadinho](https://www.mercadinhodoze.com.br/wp-content/uploads/2023/07/Frame-107402-1.webp)
 
 #mercadinhodoze #sejaseuprópriochefe #faturealto
