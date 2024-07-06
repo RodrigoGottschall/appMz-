@@ -7,8 +7,15 @@ import { useWineContext, WineItem } from "../context/WineContext";
 import CartItemCard from "../components/BagScreen/CartItemCard";
 
 const BagScreen: React.FC = () => {
-  const { cartItems, addToCart, removeFromCart, setCartItems } =
-    useWineContext();
+  const {
+    cartItems,
+    selectedWines,
+    addToCart,
+    removeFromCart,
+    setSelectedWines,
+    setCartItems,
+  } = useWineContext();
+  useWineContext();
 
   const handleRemoveFromCart = (item: WineItem) => {
     removeFromCart(item);
@@ -19,31 +26,44 @@ const BagScreen: React.FC = () => {
   };
 
   const handleDecreaseQuantity = (item: WineItem) => {
-    const existingItemIndex = cartItems.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
+    setCartItems((prevCartItems) => {
+      const existingItemIndex = prevCartItems.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
 
-    if (existingItemIndex !== -1) {
-      const updatedItem = { ...cartItems[existingItemIndex] };
-      if (updatedItem.quantity > 1) {
-        updatedItem.quantity--;
-        setCartItems((prevCartItems) => [
-          ...prevCartItems.slice(0, existingItemIndex),
-          updatedItem,
-          ...prevCartItems.slice(existingItemIndex + 1),
-        ]);
-      } else {
-        removeFromCart(item);
+      if (existingItemIndex > -1) {
+        const updatedCartItems = [...prevCartItems];
+        const existingItem = updatedCartItems[existingItemIndex];
+
+        if (existingItem.quantity > 1) {
+          // Se a quantidade for maior que 1, decrementa a quantidade
+          updatedCartItems[existingItemIndex] = {
+            ...existingItem,
+            quantity: existingItem.quantity - 1,
+          };
+        } else {
+          // Se a quantidade for 1, remove o item do carrinho
+          updatedCartItems.splice(existingItemIndex, 1);
+        }
+
+        return updatedCartItems;
       }
-    }
+
+      return prevCartItems; // Retorna o carrinho original se o item não for encontrado
+    });
+
+    setSelectedWines((prev) => ({
+      ...prev,
+      [item.id]: Math.max(0, (prev[item.id] || 0) - 1), // Atualiza a quantidade em selectedWines
+    }));
   };
 
   const renderItem = ({ item }) => (
     <CartItemCard
       item={item}
       onRemove={() => handleRemoveFromCart(item)}
-      onIncrease={() => handleIncreaseQuantity(item)}
-      onDecrease={() => handleDecreaseQuantity(item)}
+      onIncrease={() => handleIncreaseQuantity(item)} // Passar a função handleIncreaseQuantity
+      onDecrease={() => handleDecreaseQuantity(item)} // Passar a função handleDecreaseQuantity
     />
   );
 

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { WineCounterProps } from "../../context/WineContext";
 
 const Counter: React.FC<WineCounterProps> = ({
+  wineId,
   onIncrease,
   onDecrease,
   onPress,
@@ -16,7 +17,6 @@ const Counter: React.FC<WineCounterProps> = ({
 
   const handleDecrease = () => {
     if (quantity > 1) {
-      onDecrease();
       onDecrease();
     }
   };
