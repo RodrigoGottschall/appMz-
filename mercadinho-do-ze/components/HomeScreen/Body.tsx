@@ -103,7 +103,7 @@ const Body: React.FC = () => {
             </Text>
 
             <Text style={styles.itemCounterText}>
-              / {calculateTotalItems()} item(s)
+              {""} / {calculateTotalItems()} item(s)
             </Text>
           </View>
         </View>
