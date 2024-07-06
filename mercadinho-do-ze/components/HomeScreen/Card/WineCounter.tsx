@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useWineContext } from "../../../context/WineContext";
 
 interface WineCounterProps {
   wineId: number;
-  quantity: number;
   onIncrease: (wineId: number) => void;
   onDecrease: (wineId: number) => void;
   onPress?: () => void;
@@ -11,23 +11,28 @@ interface WineCounterProps {
 
 const WineCounter: React.FC<WineCounterProps> = ({
   wineId,
-  quantity,
   onIncrease,
   onDecrease,
+  onPress,
 }) => {
-  const [showDecreaseButton, setShowDecreaseButton] = useState(quantity > 0);
+  const { selectedWines, setSelectedWines } = useWineContext();
+  const quantity = selectedWines[wineId] || 0;
+  const showDecreaseButton = quantity > 0;
 
   const handleIncrease = () => {
     onIncrease(wineId);
-    setShowDecreaseButton(true);
   };
 
   const handleDecrease = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       onDecrease(wineId);
-      if (quantity === 1) {
-        setShowDecreaseButton(false);
-      }
+    } else {
+      onDecrease(wineId);
+      setSelectedWines((prev) => {
+        const updatedWines = { ...prev };
+        delete updatedWines[wineId];
+        return updatedWines;
+      });
     }
   };
 
@@ -45,7 +50,7 @@ const WineCounter: React.FC<WineCounterProps> = ({
       <Text style={styles.counterQuantity}>
         {quantity > 0 ? `${quantity} UN` : ""}
       </Text>
-      <TouchableOpacity onPress={handleIncrease}>
+      <TouchableOpacity onPress={onPress || handleIncrease}>
         <View style={styles.buttonContainer}>
           <Text
             style={

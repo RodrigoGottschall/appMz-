@@ -7,6 +7,7 @@ import {
   Nunito_700Bold,
 } from "@expo-google-fonts/nunito";
 import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
+import { useWineContext } from "../../../context/WineContext";
 
 interface WineCardProps {
   wine: {
@@ -21,16 +22,8 @@ interface WineCardProps {
   addToCart: (wineItem: WineCardProps["wine"]) => void;
 }
 
-const WineCard = ({
-  wine,
-  selectedQuantity,
-  onIncrease,
-  onDecrease,
-  addToCart,
-}) => {
-  const handleAddToCart = () => {
-    addToCart(wine);
-  };
+const WineCard = ({ wine, onIncrease, onDecrease }) => {
+  const { addToCart } = useWineContext();
   return (
     <View style={styles.cardContainer}>
       <Image source={wine.image} style={styles.wineImage} />
@@ -44,9 +37,7 @@ const WineCard = ({
       </View>
 
       <WineCounter
-        onPress={handleAddToCart}
         wineId={wine.id}
-        quantity={selectedQuantity}
         onIncrease={onIncrease}
         onDecrease={onDecrease}
       />
