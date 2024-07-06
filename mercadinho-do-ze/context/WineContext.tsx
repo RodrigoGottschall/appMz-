@@ -36,26 +36,53 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (existingItemIndex > -1) {
+        // Se o item já existe no carrinho, incrementa a quantidade em 1
         const updatedCartItems = [...prevCartItems];
         updatedCartItems[existingItemIndex] = {
           ...updatedCartItems[existingItemIndex],
-          quantity:
-            updatedCartItems[existingItemIndex].quantity + item.quantity,
+          quantity: updatedCartItems[existingItemIndex].quantity + 1,
         };
         return updatedCartItems;
       } else {
-        return [...prevCartItems, item];
+        // Se o item não existe no carrinho, adiciona com quantidade 1
+        return [...prevCartItems, { ...item, quantity: 1 }];
       }
     });
+
+    setSelectedWines((prev) => ({
+      ...prev,
+      [item.id]: (prev[item.id] || 0) + 1, // Atualiza a quantidade em selectedWines
+    }));
   };
 
   const removeFromCart = (item: WineItem) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.filter((cartItem) => cartItem.id !== item.id)
-    );
+    setCartItems((prevCartItems) => {
+      const existingItemIndex = prevCartItems.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      if (existingItemIndex > -1) {
+        const updatedCartItems = [...prevCartItems];
+        const existingItem = updatedCartItems[existingItemIndex];
+
+        if (existingItem.quantity > 1) {
+          updatedCartItems[existingItemIndex] = {
+            ...existingItem,
+            quantity: existingItem.quantity - 1,
+          };
+        } else {
+          updatedCartItems.splice(existingItemIndex, 1);
+        }
+
+        return updatedCartItems;
+      }
+
+      return prevCartItems; // Retorna o carrinho original se o item não for encontrado
+    });
+
     setSelectedWines((prev) => ({
       ...prev,
-      [item.id]: Math.max(0, (prev[item.id] || 0) - 1),
+      [item.id]: Math.max(0, (prev[item.id] || 0) - 1), // Atualiza a quantidade em selectedWines
     }));
   };
 
