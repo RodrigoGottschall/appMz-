@@ -148,10 +148,6 @@ const styles = StyleSheet.create({
     paddingBottom: 14,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   totalLabel: {
     fontSize: 10,
