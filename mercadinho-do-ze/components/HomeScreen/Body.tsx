@@ -151,13 +151,13 @@ const styles = StyleSheet.create({
   },
   totalLabel: {
     fontSize: 10,
-    fontWeight: "600",
+    fontFamily: "Nunito_600SemiBold",
     marginBottom: 5,
     color: "#878786",
   },
   totalPrice: {
     fontSize: 14,
-    fontWeight: "700",
+    fontFamily: "Nunito_700Bold",
     color: "#494949",
   },
   wineCard: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
   itemCounterText: {
     fontSize: 10,
-    fontWeight: "600",
+    fontFamily: "Nunito_600SemiBold",
     color: "#878786",
     paddingTop: 4,
   },
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   sacolaButtonText: {
     color: "#FFFFFF",
     fontSize: 12,
-    fontWeight: "800",
+    fontFamily: "Nunito_800ExtraBold",
   },
 });
 

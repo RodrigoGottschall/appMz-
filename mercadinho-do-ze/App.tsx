@@ -9,7 +9,9 @@ import { CounterProvider } from "./context/CounterContext";
 import {
   useFonts,
   Nunito_400Regular,
+  Nunito_600SemiBold,
   Nunito_700Bold,
+  Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
 import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
 
@@ -20,9 +22,11 @@ const App: React.FC = () => {
 
   let [fontsLoaded] = useFonts({
     Nunito_400Regular,
+    Nunito_600SemiBold,
     Nunito_700Bold,
     Inter_400Regular,
     Inter_700Bold,
+    Nunito_800ExtraBold,
   });
 
   useEffect(() => {
