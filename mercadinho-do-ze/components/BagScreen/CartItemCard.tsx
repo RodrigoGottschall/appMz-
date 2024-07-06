@@ -1,17 +1,28 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { CartItemCardProps } from "../../context/WineContext";
+import Counter from "./Counter";
 
-const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
+const CartItemCard: React.FC<CartItemCardProps> = ({
+  item,
+  onIncrease,
+  onDecrease,
+}) => {
   return (
     <View style={styles.cardContainer}>
       <Image source={item.image} style={styles.image} />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.price}>R$ {item.price.toFixed(2)}</Text>
-        <View style={styles.quantityContainer}>
-          <Text style={styles.quantity}>{item.quantity} UN</Text>
+        <View>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.price}>R$ {item.price.toFixed(2)}</Text>
         </View>
+
+        <Counter
+          wineId={item.id}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+          quantity={item.quantity}
+        />
       </View>
     </View>
   );
@@ -29,7 +40,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   infoContainer: {
-    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 208,
+    height: 37,
   },
   name: {
     fontSize: 11,
@@ -41,7 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: "Nunito_700Bold",
   },
   quantityContainer: {
-    backgroundColor: "#F7A833",
+    backgroundColor: "red",
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -51,6 +65,9 @@ const styles = StyleSheet.create({
   quantity: {
     color: "white",
     fontWeight: "bold",
+  },
+  button: {
+    paddingHorizontal: 5,
   },
 });
 

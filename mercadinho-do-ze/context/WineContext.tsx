@@ -17,6 +17,7 @@ export interface WineContextType {
   setSelectedWines: React.Dispatch<
     React.SetStateAction<{ [wineId: number]: number }>
   >;
+  setCartItems: React.Dispatch<React.SetStateAction<WineItem[]>>;
 }
 export interface WineCardProps {
   wine: {
@@ -33,9 +34,10 @@ export interface WineCardProps {
 
 export interface WineCounterProps {
   wineId: number;
-  onIncrease: (wineId: number) => void;
-  onDecrease: (wineId: number) => void;
+  onIncrease: () => void;
+  onDecrease: () => void;
   onPress?: () => void;
+  quantity: number;
 }
 
 export interface CartItemCardProps {
@@ -68,7 +70,6 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (existingItemIndex > -1) {
-        // Se o item já existe no carrinho, incrementa a quantidade em 1
         const updatedCartItems = [...prevCartItems];
         updatedCartItems[existingItemIndex] = {
           ...updatedCartItems[existingItemIndex],
@@ -76,14 +77,13 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
         };
         return updatedCartItems;
       } else {
-        // Se o item não existe no carrinho, adiciona com quantidade 1
         return [...prevCartItems, { ...item, quantity: 1 }];
       }
     });
 
     setSelectedWines((prev) => ({
       ...prev,
-      [item.id]: (prev[item.id] || 0) + 1, // Atualiza a quantidade em selectedWines
+      [item.id]: (prev[item.id] || 0) + 1,
     }));
   };
 
@@ -132,6 +132,7 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
         removeAllItems,
         selectedWines,
         setSelectedWines,
+        setCartItems,
       }}
     >
       {children}

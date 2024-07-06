@@ -41,9 +41,8 @@ const BagScreen: React.FC = () => {
   const renderItem = ({ item }) => (
     <CartItemCard
       item={item}
-      onRemove={() => handleRemoveFromCart(item)}
-      onIncrease={() => handleIncreaseQuantity(item)}
-      onDecrease={() => handleDecreaseQuantity(item)}
+      onIncrease={() => handleIncreaseQuantity(item)} // Passa a função como prop
+      onDecrease={() => handleDecreaseQuantity(item)} // Passa a função como prop
     />
   );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import WineCounter from "./WineCounter";
+import WineCounter from "./Counter";
 import {
   useFonts,
   Nunito_400Regular,

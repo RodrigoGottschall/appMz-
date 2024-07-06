@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useWineContext, WineCounterProps } from "../../../context/WineContext";
+import { WineCounterProps } from "../../context/WineContext"; // Certifique-se de que o caminho está correto
 
-const WineCounter: React.FC<WineCounterProps> = ({
+const Counter: React.FC<WineCounterProps> = ({
   wineId,
   onIncrease,
   onDecrease,
   onPress,
+  quantity,
 }) => {
-  const { selectedWines, setSelectedWines } = useWineContext();
-  const quantity = selectedWines[wineId] || 0;
   const showDecreaseButton = quantity > 0;
 
   const handleIncrease = () => {
-    onIncrease(wineId);
+    onIncrease();
   };
 
   const handleDecrease = () => {
     if (quantity > 1) {
-      onDecrease(wineId);
-    } else {
-      onDecrease(wineId);
-      setSelectedWines((prev) => {
-        const updatedWines = { ...prev };
-        delete updatedWines[wineId];
-        return updatedWines;
-      });
+      onDecrease();
+      onDecrease();
     }
   };
 
@@ -70,8 +63,8 @@ const styles = StyleSheet.create({
     width: 67,
     height: 25,
     position: "absolute",
-    left: 55,
-    bottom: 15,
+    left: 250,
+    bottom: 13,
   },
   counterButtonText: {
     fontSize: 15,
@@ -99,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WineCounter;
+export default Counter;
