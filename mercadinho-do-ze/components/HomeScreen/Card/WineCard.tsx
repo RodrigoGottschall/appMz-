@@ -22,8 +22,13 @@ interface WineCardProps {
   addToCart: (wineItem: WineCardProps["wine"]) => void;
 }
 
-const WineCard = ({ wine, onIncrease, onDecrease }) => {
-  const { addToCart } = useWineContext();
+const WineCard: React.FC<WineCardProps> = ({
+  wine,
+  selectedQuantity,
+  onIncrease,
+  onDecrease,
+}) => {
+  const { addToCart, removeFromCart } = useWineContext(); // Importe removeFromCart
   return (
     <View style={styles.cardContainer}>
       <Image source={wine.image} style={styles.wineImage} />
@@ -39,7 +44,8 @@ const WineCard = ({ wine, onIncrease, onDecrease }) => {
       <WineCounter
         wineId={wine.id}
         onIncrease={onIncrease}
-        onDecrease={onDecrease}
+        onDecrease={() => removeFromCart(wine)} // Chame removeFromCart corretamente
+        quantity={selectedQuantity}
       />
     </View>
   );
