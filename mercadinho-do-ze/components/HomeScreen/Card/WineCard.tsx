@@ -12,9 +12,19 @@ interface WineCardProps {
   selectedQuantity: number;
   onIncrease: (wineId: number) => void;
   onDecrease: (wineId: number) => void;
+  addToCart: (wineItem: WineCardProps["wine"]) => void; // Adicione a tipagem da prop
 }
 
-const WineCard = ({ wine, selectedQuantity, onIncrease, onDecrease }) => {
+const WineCard = ({
+  wine,
+  selectedQuantity,
+  onIncrease,
+  onDecrease,
+  addToCart,
+}) => {
+  const handleAddToCart = () => {
+    addToCart(wine);
+  };
   return (
     <View style={styles.cardContainer}>
       <Image source={wine.image} style={styles.wineImage} />
@@ -28,6 +38,7 @@ const WineCard = ({ wine, selectedQuantity, onIncrease, onDecrease }) => {
       </View>
 
       <WineCounter
+        onPress={handleAddToCart}
         wineId={wine.id}
         quantity={selectedQuantity}
         onIncrease={onIncrease}

@@ -3,8 +3,15 @@ import { View, StyleSheet } from "react-native";
 import Header from "../components/HomeScreen/Header";
 import Footer from "../components/Footer";
 import Body from "../components/HomeScreen/HomeBody";
+import { useWineContext, WineItem } from "../context/WineContext";
 
 const HomeScreen = () => {
+  const { addToCart } = useWineContext();
+
+  const handleAddToCart = (wineItem: WineItem) => {
+    addToCart(wineItem);
+  };
+
   return (
     <View style={styles.screen}>
       <View style={styles.container}>

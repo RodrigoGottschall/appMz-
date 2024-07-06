@@ -6,6 +6,7 @@ interface WineCounterProps {
   quantity: number;
   onIncrease: (wineId: number) => void;
   onDecrease: (wineId: number) => void;
+  onPress?: () => void;
 }
 
 const WineCounter: React.FC<WineCounterProps> = ({

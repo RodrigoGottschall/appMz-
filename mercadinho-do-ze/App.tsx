@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Provider } from "react-redux";
 import LoadingScreen from "./screens/LoadingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import BagScreen from "./screens/BagScreen";
-import store from "./store";
+import { WineProvider } from "./context/WineContext";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +18,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Provider store={store}>
+    <WineProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
@@ -34,7 +33,7 @@ const App: React.FC = () => {
           )}
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </WineProvider>
   );
 };
 
