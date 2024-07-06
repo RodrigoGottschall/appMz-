@@ -35,8 +35,8 @@ export interface WineCardProps {
 
 export interface WineCounterProps {
   wineId: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
+  onIncrease: (wineId: number) => void;
+  onDecrease: (wineId: number) => void;
   onPress?: () => void;
   quantity: number;
 }

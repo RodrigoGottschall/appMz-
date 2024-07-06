@@ -9,8 +9,13 @@ import {
 import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
 import { useWineContext, WineCardProps } from "../../../context/WineContext";
 
-const WineCard: React.FC<WineCardProps> = ({ wine, onIncrease }) => {
+const WineCard: React.FC<WineCardProps> = ({
+  wine,
+  onIncrease,
+  onDecrease,
+}) => {
   const { removeFromCart } = useWineContext();
+
   return (
     <View style={styles.cardContainer}>
       <Image source={wine.image} style={styles.wineImage} />
@@ -25,8 +30,9 @@ const WineCard: React.FC<WineCardProps> = ({ wine, onIncrease }) => {
 
       <WineCounter
         wineId={wine.id}
-        onIncrease={onIncrease}
-        onDecrease={() => removeFromCart(wine)}
+        onIncrease={() => onIncrease(wine.id)}
+        onDecrease={() => onDecrease(wine.id)}
+        quantity={0}
       />
     </View>
   );
