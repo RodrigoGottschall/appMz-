@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
-    paddingBottom: 46,
+    paddingBottom: 71,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
     position: "absolute",

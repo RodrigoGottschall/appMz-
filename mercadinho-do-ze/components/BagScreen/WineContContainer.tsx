@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#F9F9F9",
   },
   wineText: {
     fontSize: 12,
@@ -40,18 +39,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#00644B",
     fontWeight: "700",
-  },
-  counterContainer: {
-    backgroundColor: "#00644B", // Cor de fundo do contador (verde)
-    borderRadius: 20, // Borda arredondada
-    paddingVertical: 4, // Espaçamento vertical
-    paddingHorizontal: 8, // Espaçamento horizontal
-    marginLeft: 8, // Margem à esquerda do texto "Vinhos"
-  },
-  counterText: {
-    color: "#fff", // Cor do texto (branco)
-    fontWeight: "bold", // Negrito
-    fontSize: 12, // Tamanho da fonte
   },
 });
 

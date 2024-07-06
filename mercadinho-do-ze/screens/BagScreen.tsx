@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import HeaderBag from "../components/BagScreen/Header";
+import { View, FlatList, StyleSheet, Text } from "react-native";
+import Header from "../components/BagScreen/Header";
 import Body from "../components/BagScreen/Body";
 import Footer from "../components/Footer";
 import { useWineContext, WineItem } from "../context/WineContext";
@@ -50,9 +44,9 @@ const BagScreen: React.FC = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <HeaderBag />
+        <Header />
         {cartItems.length === 0 ? (
-          <Text>Sua sacola está vazia</Text>
+          <Text style={styles.text}>Sua sacola está vazia</Text>
         ) : (
           <FlatList
             data={cartItems}
@@ -76,7 +70,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     paddingTop: 50,
-    paddingBottom: 20,
+  },
+  text: {
+    paddingTop: 25,
+    paddingLeft: 17,
   },
 });
 
