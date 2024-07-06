@@ -20,7 +20,7 @@ const Body: React.FC = () => {
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    height: 700,
+    flex: 1,
   },
   calculationContainer: {
     justifyContent: "center",
@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-  },
-  bottomContainer: {
-    backgroundColor: "red",
   },
   bottomLabel: {
     paddingTop: 25,

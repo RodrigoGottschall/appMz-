@@ -58,6 +58,7 @@ const BagScreen: React.FC = () => {
             data={cartItems}
             keyExtractor={(item) => item.id.toString()}
             renderItem={renderItem}
+            style={styles.flatListContainer}
           />
         )}
         <Body />
@@ -80,6 +81,10 @@ const styles = StyleSheet.create({
   text: {
     paddingTop: 25,
     paddingLeft: 17,
+    minHeight: 745,
+  },
+  flatListContainer: {
+    minHeight: 745,
   },
 });
 
