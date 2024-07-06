@@ -1,35 +1,28 @@
-# TypeScript Example
+# Seu Mercadinho na Palma da Mão com o App Mercadinho do Zé!
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+### Sonha em ter seu próprio negócio e gerenciar tudo pelo celular? Agora é possível com o App Mercadinho do Zé, a solução completa para você controlar seu minimercado, mercearia ou loja de conveniência de onde estiver!
 
-```sh
-npx create-expo --example with-typescript
-```
+## Por que o App Mercadinho do Zé é a escolha certa para você?
 
-TypeScript is a superset of JavaScript which gives you static types and powerful tooling in Visual Studio Code including autocompletion and useful inline warnings for type errors.
+- Mobilidade: Gerencie seu negócio de qualquer lugar, a qualquer hora, com a praticidade do seu celular.
+- Praticidade: Simplifique suas tarefas diárias e otimize seu tempo com um app completo e intuitivo.
+- Tecnologia de Ponta: Desenvolvido com React Native, garantindo um desempenho rápido e responsivo.
+- Segurança: Seus dados e informações financeiras protegidos com criptografia avançada.
+- Suporte Especializado: Conte com nossa equipe de suporte para te ajudar em todas as etapas.
 
-## 🚀 How to use
+## Como começar?
 
-#### Creating a new project
+1. Clone o repositório: git clone https://github.com/RodrigoGottschall/appMz-.git
+2. Instale as dependências: npm install ou yarn install
+3. Inicie o aplicativo: npx expo start ou yarn start
+4. Aproveite a liberdade: Baixe o app Expo Go no seu celular e escaneie o QR Code para testar o app.
 
-- Create a project: `npx create-expo --example with-typescript`
-- `cd` into the project
+Dúvidas?
 
-### Adding TypeScript to existing projects
+Entre em contato com nosso suporte pelo e-mail [ro_criscuolo@hotmail.com]
 
-- Create a blank TypeScript config: `touch tsconfig.json`
-- Run `yarn start` or `npm run start` to automatically configure TypeScript
-- Rename files to TypeScript, `.tsx` for React components and `.ts` for plain typescript files
+### Não perca tempo! Comece agora mesmo a transformar seu sonho em realidade com o Mercadinho do Zé!
 
-> 💡 You can disable the TypeScript setup in Expo CLI with the environment variable `EXPO_NO_TYPESCRIPT_SETUP=1 expo start`
+! [https://www.mercadinhodoze.com.br/wp-content/uploads/2023/07/Frame-107402-1.webp]
 
-## 📝 Notes
-
-- [Expo TypeScript guide](https://docs.expo.dev/versions/latest/guides/typescript/)
+#mercadinhodoze #sejaseuprópriochefe #faturealto
