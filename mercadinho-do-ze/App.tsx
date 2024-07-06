@@ -27,14 +27,10 @@ const App: React.FC = () => {
     Nunito_800ExtraBold,
   });
 
-  useEffect(() => {
+  if (!fontsLoaded) {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }, []);
-
-  if (!fontsLoaded) {
-    return <LoadingScreen />;
   } else {
     return (
       <WineProvider>
