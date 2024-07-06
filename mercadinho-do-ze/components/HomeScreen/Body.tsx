@@ -37,24 +37,20 @@ const Body: React.FC = () => {
   const { selectedWines, setSelectedWines } = useWineContext();
 
   const handleWinePress = (wineId: number) => {
-    setSelectedWines((prevSelected) => {
-      const updatedSelectedWines = {
-        ...prevSelected,
-        [wineId]: (prevSelected[wineId] || 0) + 1,
-      };
+    // Atualiza o estado selectedWines para aumentar a quantidade do vinho selecionado
+    setSelectedWines((prevSelected) => ({
+      ...prevSelected,
+      [wineId]: (prevSelected[wineId] || 0) + 1,
+    }));
 
-      const wineItem = wines.find((wine) => wine.id === wineId);
-      if (wineItem && !cartItems.some((item) => item.id === wineItem.id)) {
-        addToCart({
-          ...wineItem,
-          quantity: updatedSelectedWines[wineId],
-          uniqueId: Date.now(),
-        });
-      }
-
-      return updatedSelectedWines;
-    });
+    // Encontra o vinho correspondente ao wineId
+    const wineItem = wines.find((wine) => wine.id === wineId);
+    if (wineItem) {
+      // Adiciona o vinho ao carrinho com a quantidade atualizada
+      addToCart({ ...wineItem, quantity: selectedWines[wineId] || 0 });
+    }
   };
+
   const handleDecrease = (wineId: number) => {
     setSelectedWines((prevSelected) => {
       const newQuantity = (prevSelected[wineId] || 0) - 1;

@@ -29,30 +29,24 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
     [wineId: number]: number;
   }>({});
 
-  const addToCart = (newItem: WineItem) => {
+  const addToCart = (item: WineItem) => {
     setCartItems((prevCartItems) => {
       const existingItemIndex = prevCartItems.findIndex(
-        (cartItem) => cartItem.id === newItem.id
+        (cartItem) => cartItem.id === item.id
       );
 
       if (existingItemIndex > -1) {
-        const updatedItem = {
-          ...prevCartItems[existingItemIndex],
-          quantity: prevCartItems[existingItemIndex].quantity + 1,
+        const updatedCartItems = [...prevCartItems];
+        updatedCartItems[existingItemIndex] = {
+          ...updatedCartItems[existingItemIndex],
+          quantity:
+            updatedCartItems[existingItemIndex].quantity + item.quantity,
         };
-        return [
-          ...prevCartItems.slice(0, existingItemIndex),
-          updatedItem,
-          ...prevCartItems.slice(existingItemIndex + 1),
-        ];
+        return updatedCartItems;
       } else {
-        return [...prevCartItems, { ...newItem, quantity: 1 }];
+        return [...prevCartItems, item];
       }
     });
-    setSelectedWines((prev) => ({
-      ...prev,
-      [newItem.id]: (prev[newItem.id] || 0) + 1,
-    }));
   };
 
   const removeFromCart = (item: WineItem) => {
