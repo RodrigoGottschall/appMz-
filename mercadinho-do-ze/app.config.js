@@ -41,5 +41,6 @@ export default {
         projectId: process.env.EAS_PROJECT_ID,
       },
     },
+    plugins: ["expo-font"],
   },
 };
