@@ -1,23 +1,40 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, Text } from "react-native";
 import HeaderBag from "../components/BagScreen/Header";
 import Footer from "../components/Footer";
 import { useWineContext } from "../context/WineContext";
+import CartItemCard from "../components/BagScreen/CartItemCard";
 
 const BagScreen: React.FC = () => {
   const { cartItems } = useWineContext();
+
+  const renderItem = ({ item }) => {
+    return (
+      <CartItemCard
+        item={{
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          quantity: item.quantity,
+        }}
+      />
+    ); // Passar as propriedades para o CartItemCard
+  };
 
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
         <HeaderBag />
-        {cartItems.map((item, index) => (
-          <Text key={index}>
-            {item.nome} - {item.preco}
-          </Text>
-        ))}
+        {cartItems.length === 0 ? (
+          <Text>Sua sacola está vazia</Text>
+        ) : (
+          <FlatList
+            data={cartItems}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderItem}
+          />
+        )}
       </View>
-      <Text>Sacola screen</Text>
       <Footer />
     </View>
   );
@@ -31,7 +48,6 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "#fff",
-    padding: 10,
     paddingTop: 50,
     paddingBottom: 20,
   },
