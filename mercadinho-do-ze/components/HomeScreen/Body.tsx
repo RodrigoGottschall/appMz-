@@ -9,6 +9,7 @@ import {
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
 import { useWineContext } from "../../context/WineContext";
+import { WineCardProps } from "../../context/WineContext";
 
 export const wines = [
   {
@@ -89,6 +90,7 @@ const Body: React.FC = () => {
             selectedQuantity={selectedWines[item.id] || 0}
             onIncrease={handleWinePress}
             onDecrease={handleDecrease}
+            addToCart={() => handleWinePress(item.id)}
           />
         )}
       />

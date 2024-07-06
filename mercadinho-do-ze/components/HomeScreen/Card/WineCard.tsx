@@ -7,28 +7,10 @@ import {
   Nunito_700Bold,
 } from "@expo-google-fonts/nunito";
 import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
-import { useWineContext } from "../../../context/WineContext";
+import { useWineContext, WineCardProps } from "../../../context/WineContext";
 
-interface WineCardProps {
-  wine: {
-    id: number;
-    name: string;
-    price: number;
-    image: any;
-  };
-  selectedQuantity: number;
-  onIncrease: (wineId: number) => void;
-  onDecrease: (wineId: number) => void;
-  addToCart: (wineItem: WineCardProps["wine"]) => void;
-}
-
-const WineCard: React.FC<WineCardProps> = ({
-  wine,
-  selectedQuantity,
-  onIncrease,
-  onDecrease,
-}) => {
-  const { addToCart, removeFromCart } = useWineContext(); // Importe removeFromCart
+const WineCard: React.FC<WineCardProps> = ({ wine, onIncrease }) => {
+  const { removeFromCart } = useWineContext();
   return (
     <View style={styles.cardContainer}>
       <Image source={wine.image} style={styles.wineImage} />
@@ -44,8 +26,7 @@ const WineCard: React.FC<WineCardProps> = ({
       <WineCounter
         wineId={wine.id}
         onIncrease={onIncrease}
-        onDecrease={() => removeFromCart(wine)} // Chame removeFromCart corretamente
-        quantity={selectedQuantity}
+        onDecrease={() => removeFromCart(wine)}
       />
     </View>
   );

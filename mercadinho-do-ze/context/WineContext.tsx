@@ -8,7 +8,7 @@ export interface WineItem {
   quantity: number;
 }
 
-interface WineContextType {
+export interface WineContextType {
   cartItems: WineItem[];
   addToCart: (item: WineItem) => void;
   removeFromCart: (item: WineItem) => void;
@@ -17,6 +17,25 @@ interface WineContextType {
   setSelectedWines: React.Dispatch<
     React.SetStateAction<{ [wineId: number]: number }>
   >;
+}
+export interface WineCardProps {
+  wine: {
+    id: number;
+    name: string;
+    price: number;
+    image: any;
+  };
+  selectedQuantity: number;
+  onIncrease: (wineId: number) => void;
+  onDecrease: (wineId: number) => void;
+  addToCart: (wineItem: WineCardProps["wine"]) => void;
+}
+
+export interface WineCounterProps {
+  wineId: number;
+  onIncrease: (wineId: number) => void;
+  onDecrease: (wineId: number) => void;
+  onPress?: () => void;
 }
 
 const WineContext = createContext<WineContextType | undefined>(undefined);

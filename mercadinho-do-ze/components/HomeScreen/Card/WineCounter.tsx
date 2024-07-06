@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useWineContext } from "../../../context/WineContext";
-
-interface WineCounterProps {
-  wineId: number;
-  onIncrease: (wineId: number) => void;
-  onDecrease: (wineId: number) => void;
-  onPress?: () => void;
-}
+import { useWineContext, WineCounterProps } from "../../../context/WineContext";
 
 const WineCounter: React.FC<WineCounterProps> = ({
   wineId,
