@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
-    paddingBottom: 71,
+    paddingBottom: 52,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
     position: "absolute",
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     fontSize: 14,
     fontWeight: "700",
-    marginBottom: 5,
     color: "#F7A833",
   },
 });
