@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoadingScreen from "./screens/LoadingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import BagScreen from "./screens/BagScreen";
 import { WineProvider } from "./context/WineContext";
@@ -35,13 +34,7 @@ const App: React.FC = () => {
   }, []);
 
   if (!fontsLoaded) {
-    return (
-      <LoadingScreen
-        logoSource={{
-          uri: "./assets/logo.png",
-        }}
-      />
-    );
+    return <LoadingScreen />;
   } else {
     return (
       <WineProvider>
