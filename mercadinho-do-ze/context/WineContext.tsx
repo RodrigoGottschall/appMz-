@@ -11,6 +11,7 @@ interface WineItem {
 interface WineContextType {
   cartItems: WineItem[];
   addToCart: (item: WineItem) => void;
+  removeFromCart: (item: WineItem) => void;
 }
 
 const WineContext = createContext<WineContextType | undefined>(undefined);
@@ -27,6 +28,7 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (existingItemIndex > -1) {
+        // Item já existe no carrinho, atualize a quantidade
         const updatedCartItems = [...prevCartItems];
         updatedCartItems[existingItemIndex] = {
           ...updatedCartItems[existingItemIndex],
@@ -41,8 +43,14 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const removeFromCart = (item: WineItem) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((cartItem) => cartItem.id !== item.id)
+    );
+  };
+
   return (
-    <WineContext.Provider value={{ cartItems, addToCart }}>
+    <WineContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </WineContext.Provider>
   );

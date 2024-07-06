@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,10 +8,16 @@ import {
 } from "react-native";
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
+import { useWineContext } from "../../context/WineContext";
 
 const Body = () => {
+  // Hook de navegação para ir para a tela BagScreen
   const navigation = useNavigation();
 
+  // Obtém a função addToCart do contexto WineContext
+  const { addToCart } = useWineContext();
+
+  // Dados dos vinhos (substitua com seus próprios dados)
   const wines = [
     {
       id: 1,
@@ -33,16 +39,27 @@ const Body = () => {
     },
   ];
 
+  // Estado para armazenar a quantidade de cada vinho selecionado
   const [selectedWines, setSelectedWines] = useState({});
 
-  const handleWinePress = (wineId) => {
+  // Função chamada quando o usuário pressiona um card de vinho
+  const handleWinePress = (wineId: number) => {
+    // Atualiza o estado selectedWines para aumentar a quantidade do vinho selecionado
     setSelectedWines((prevSelected) => ({
       ...prevSelected,
       [wineId]: (prevSelected[wineId] || 0) + 1,
     }));
+
+    // Encontra o vinho correspondente ao wineId
+    const wineItem = wines.find((wine) => wine.id === wineId);
+    if (wineItem) {
+      // Adiciona o vinho ao carrinho com a quantidade atualizada
+      addToCart({ ...wineItem, quantity: selectedWines[wineId] || 0 });
+    }
   };
 
-  const handleDecrease = (wineId) => {
+  // Função chamada quando o usuário diminui a quantidade de um vinho
+  const handleDecrease = (wineId: number) => {
     setSelectedWines((prevSelected) => {
       const newQuantity = (prevSelected[wineId] || 0) - 1;
       return newQuantity > 0
@@ -51,6 +68,7 @@ const Body = () => {
     });
   };
 
+  // Função para calcular o preço total dos vinhos selecionados
   const calculateTotal = () => {
     return wines.reduce((total, wine) => {
       const quantity = selectedWines[wine.id] || 0;
@@ -58,6 +76,7 @@ const Body = () => {
     }, 0);
   };
 
+  // Função para calcular o total de itens selecionados
   const calculateTotalItems = () => {
     const quantities = Object.values(selectedWines);
     const validQuantities = quantities.filter((qty) => qty !== undefined);
@@ -66,6 +85,7 @@ const Body = () => {
 
   return (
     <View style={styles.bodyContainer}>
+      {/* Lista plana para exibir os cards de vinho */}
       <FlatList
         data={wines}
         keyExtractor={(item) => item.id.toString()}
@@ -81,6 +101,7 @@ const Body = () => {
         )}
       />
 
+      {/* Container para exibir o total e o botão "Ver Sacola" */}
       <View style={styles.calculationContainer}>
         <View style={styles.totalContainer}>
           <Text style={styles.totalLabel}>Total</Text>
@@ -89,10 +110,12 @@ const Body = () => {
               R$ {calculateTotal().toFixed(2)}
             </Text>
             <Text style={styles.itemCounterText}>
-              {""} / {calculateTotalItems()} item(s)
+              {" "}
+              / {calculateTotalItems()} item(s)
             </Text>
           </View>
         </View>
+        {/* Botão "Ver Sacola" */}
         <TouchableOpacity
           style={styles.sacolaButton}
           onPress={() => navigation.navigate("BagScreen")}

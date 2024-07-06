@@ -1,24 +1,49 @@
-import React from "react";
-import { View, FlatList, StyleSheet, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import HeaderBag from "../components/BagScreen/Header";
 import Footer from "../components/Footer";
-import { useWineContext } from "../context/WineContext";
+import { useWineContext, WineItem } from "../context/WineContext";
 import CartItemCard from "../components/BagScreen/CartItemCard";
 
 const BagScreen: React.FC = () => {
-  const { cartItems } = useWineContext();
+  const { cartItems, addToCart, removeFromCart } = useWineContext();
+  const [_, setForceUpdate] = useState(0);
+
+  useEffect(() => {
+    setForceUpdate((prev) => prev + 1);
+  }, [cartItems]);
+
+  const handleRemoveFromCart = (item: WineItem) => {
+    removeFromCart(item);
+  };
+
+  const handleIncreaseQuantity = (item: WineItem) => {
+    addToCart({ ...item, quantity: 1 });
+  };
+
+  const handleDecreaseQuantity = (item: WineItem) => {
+    if (item.quantity > 1) {
+      addToCart({ ...item, quantity: -1 });
+    } else {
+      removeFromCart(item);
+    }
+  };
 
   const renderItem = ({ item }) => {
     return (
       <CartItemCard
-        item={{
-          name: item.name,
-          price: item.price,
-          image: item.image,
-          quantity: item.quantity,
-        }}
+        item={item}
+        onRemove={() => handleRemoveFromCart(item)}
+        onIncrease={() => handleIncreaseQuantity(item)}
+        onDecrease={() => handleDecreaseQuantity(item)}
       />
-    ); // Passar as propriedades para o CartItemCard
+    );
   };
 
   return (
