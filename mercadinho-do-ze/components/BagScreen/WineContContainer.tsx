@@ -32,13 +32,8 @@ const styles = StyleSheet.create({
   wineText: {
     fontSize: 12,
     color: "#606060",
-    fontWeight: "400",
+    fontFamily: "Nunito_400Regular",
     paddingLeft: 17,
-  },
-  verMaisText: {
-    fontSize: 12,
-    color: "#00644B",
-    fontWeight: "700",
   },
 });
 

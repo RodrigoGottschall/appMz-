@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   bottomLabel: {
     paddingTop: 25,
     fontSize: 14,
-    fontWeight: "700",
+    fontFamily: "Nunito_700Bold",
     color: "#F7A833",
   },
 });

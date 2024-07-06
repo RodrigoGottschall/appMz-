@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "Nunito_800ExtraBold",
     color: "#323232",
   },
   absoluteCenter: {
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   bagClean: {
     color: "#EB4132",
     fontSize: 11,
+    fontFamily: "Nunito_600SemiBold",
   },
 });
 

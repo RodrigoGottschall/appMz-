@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
   },
   image: {
     width: 50,
@@ -35,13 +33,12 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 11,
-    fontWeight: "400",
+    fontFamily: "Nunito_400Regular",
     textTransform: "uppercase",
   },
   price: {
     fontSize: 12,
-    fontWeight: "700",
-    color: "#333",
+    fontFamily: "Nunito_700Bold",
   },
   quantityContainer: {
     backgroundColor: "#F7A833",
