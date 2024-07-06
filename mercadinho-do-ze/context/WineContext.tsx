@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 
-interface WineItem {
+export interface WineItem {
   id: number;
   name: string;
   price: number;
