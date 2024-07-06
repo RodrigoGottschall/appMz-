@@ -3,19 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import WineContContainer from "./WineContContainer";
 import { useWineContext } from "../../context/WineContext";
 
-interface CartItemCardProps {
-  item: {
-    id: number;
-    name: string;
-    price: number;
-    image: any;
-    quantity: number;
-  };
-  onRemove: () => void;
-  onIncrease: () => void;
-  onDecrease: () => void;
-}
-
 const Header: React.FC = () => {
   const { removeAllItems } = useWineContext();
 
