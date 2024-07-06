@@ -89,7 +89,7 @@ const Body: React.FC = () => {
             wine={item}
             selectedQuantity={selectedWines[item.id] || 0}
             onIncrease={handleWinePress}
-            onDecrease={() => handleDecrease(item.id)} // Passando a função onDecrease como prop
+            onDecrease={() => handleDecrease(item.id)}
             addToCart={() => handleWinePress(item.id)}
           />
         )}
