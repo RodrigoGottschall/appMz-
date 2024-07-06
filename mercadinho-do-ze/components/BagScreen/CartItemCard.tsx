@@ -1,18 +1,6 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-
-interface CartItemCardProps {
-  item: {
-    id: number; // Ou wineId: number;
-    name: string;
-    price: number;
-    image: any;
-    quantity: number;
-  };
-  onRemove: () => void;
-  onIncrease: () => void;
-  onDecrease: () => void;
-}
+import { View, Text, Image, StyleSheet } from "react-native";
+import { CartItemCardProps } from "../../context/WineContext";
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
   return (

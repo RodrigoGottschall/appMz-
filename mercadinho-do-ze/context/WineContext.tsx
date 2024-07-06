@@ -38,6 +38,19 @@ export interface WineCounterProps {
   onPress?: () => void;
 }
 
+export interface CartItemCardProps {
+  item: {
+    id: number;
+    name: string;
+    price: number;
+    image: any;
+    quantity: number;
+  };
+  onRemove: () => void;
+  onIncrease: () => void;
+  onDecrease: () => void;
+}
+
 const WineContext = createContext<WineContextType | undefined>(undefined);
 
 export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
