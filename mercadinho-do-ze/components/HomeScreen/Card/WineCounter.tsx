@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     width: 67,
     height: 25,
     position: "absolute",
-    left: 50,
-    bottom: 40,
+    left: 55,
+    bottom: 15,
   },
   counterButtonText: {
     fontSize: 15,
