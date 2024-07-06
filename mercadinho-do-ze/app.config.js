@@ -33,7 +33,7 @@ export default {
       package: process.env.ANDROID_PACKAGE,
     },
     web: {
-      favicon: "./assets/favicon.png",
+      favicon: "./assets/logo.png",
     },
     extra: {
       eas: {
