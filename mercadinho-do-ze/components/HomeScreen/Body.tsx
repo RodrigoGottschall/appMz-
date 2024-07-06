@@ -9,7 +9,7 @@ import {
 import WineCard from "./Card/WineCard";
 import { useNavigation } from "@react-navigation/native";
 
-const HomeBody = () => {
+const Body = () => {
   const navigation = useNavigation();
 
   const wines = [
@@ -174,4 +174,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeBody;
+export default Body;
