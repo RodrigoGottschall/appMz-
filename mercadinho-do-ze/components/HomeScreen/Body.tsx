@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     height: 700,
   },
   flatListContent: {
-    paddingBottom: 50,
+    paddingBottom: 69,
     paddingLeft: 18,
     justifyContent: "space-between",
   },
@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 10,
     paddingLeft: 19,
-    paddingBottom: 14,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
   },
