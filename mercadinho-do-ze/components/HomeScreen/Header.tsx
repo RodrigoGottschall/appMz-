@@ -2,6 +2,11 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import WineTextContainer from "./WineTextContainer";
+import {
+  useFonts,
+  Nunito_400Regular,
+  Nunito_700Bold,
+} from "@expo-google-fonts/nunito";
 
 const HeaderHome: React.FC = () => {
   return (
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     color: "#323232",
-    fontFamily: "Nunito_700Regular",
+    fontFamily: "Nunito_700Bold",
   },
 });
 

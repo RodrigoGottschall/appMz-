@@ -1,6 +1,12 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import WineCounter from "./WineCounter";
+import {
+  useFonts,
+  Nunito_400Regular,
+  Nunito_700Bold,
+} from "@expo-google-fonts/nunito";
+import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
 
 interface WineCardProps {
   wine: {
@@ -12,7 +18,7 @@ interface WineCardProps {
   selectedQuantity: number;
   onIncrease: (wineId: number) => void;
   onDecrease: (wineId: number) => void;
-  addToCart: (wineItem: WineCardProps["wine"]) => void; // Adicione a tipagem da prop
+  addToCart: (wineItem: WineCardProps["wine"]) => void;
 }
 
 const WineCard = ({
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
   },
   winePrice: {
     fontSize: 10,
-    fontWeight: "bold",
+    fontFamily: "Inter_700Bold",
     color: "#00644B",
   },
   nameContainer: {
@@ -77,6 +83,7 @@ const styles = StyleSheet.create({
   wineName: {
     flex: 1,
     fontSize: 8,
+    fontFamily: "Nunito_400Regular",
   },
 });
 

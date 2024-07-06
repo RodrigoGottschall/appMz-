@@ -10,7 +10,8 @@ import {
   useFonts,
   Nunito_400Regular,
   Nunito_700Bold,
-} from "@expo-google-fonts/nunito"; // Expo
+} from "@expo-google-fonts/nunito";
+import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,8 @@ const App: React.FC = () => {
   let [fontsLoaded] = useFonts({
     Nunito_400Regular,
     Nunito_700Bold,
+    Inter_400Regular,
+    Inter_700Bold,
   });
 
   useEffect(() => {

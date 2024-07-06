@@ -6,6 +6,11 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import {
+  useFonts,
+  Nunito_400Regular,
+  Nunito_700Bold,
+} from "@expo-google-fonts/nunito";
 
 const WineTextContainer: React.FC = () => {
   const handleOpenLink = () => {
@@ -34,12 +39,12 @@ const styles = StyleSheet.create({
   wineText: {
     fontSize: 12,
     color: "#323232",
-    fontWeight: "700",
+    fontFamily: "Nunito_700Bold",
   },
   verMaisText: {
     fontSize: 12,
     color: "#00644B",
-    fontWeight: "700",
+    fontFamily: "Nunito_700Bold",
   },
 });
 
