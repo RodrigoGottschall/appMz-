@@ -118,9 +118,17 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
     });
 
     setSelectedWines((prevSelectedWines) => {
-      const newSelectedWines = { ...prevSelectedWines };
-      delete newSelectedWines[item.id];
-      return newSelectedWines;
+      const currentQuantity = prevSelectedWines[item.id] || 0;
+      if (currentQuantity > 1) {
+        return {
+          ...prevSelectedWines,
+          [item.id]: currentQuantity - 1,
+        };
+      } else {
+        const newSelectedWines = { ...prevSelectedWines };
+        delete newSelectedWines[item.id];
+        return newSelectedWines;
+      }
     });
   };
 

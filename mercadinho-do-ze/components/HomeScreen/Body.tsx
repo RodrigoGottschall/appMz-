@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -33,33 +33,33 @@ export const wines = [
 
 const Body: React.FC = () => {
   const navigation = useNavigation();
-  const { addToCart, cartItems } = useWineContext();
+  const { addToCart, cartItems, removeFromCart } = useWineContext();
   const { selectedWines, setSelectedWines } = useWineContext();
 
   const handleWinePress = (wineId: number) => {
-    addToCart({
-      ...wines.find((wine) => wine.id === wineId),
-      quantity: 1,
-    });
-  };
-
-  const handleIncrease = (wineId: number) => {
-    setSelectedWines((prevSelected) => ({
-      ...prevSelected,
-      [wineId]: (prevSelected[wineId] || 0) + 1,
-    }));
+    const existingItem = cartItems.find((wine) => wine.id === wineId);
+    if (existingItem) {
+      addToCart({
+        ...existingItem,
+        quantity: existingItem.quantity + 1,
+      });
+    } else {
+      addToCart({
+        ...wines.find((wine) => wine.id === wineId),
+        quantity: 1,
+      });
+    }
   };
 
   const handleDecrease = (wineId: number) => {
-    setSelectedWines((prevSelected) => {
-      const newQuantity = (prevSelected[wineId] || 0) - 1;
-      if (newQuantity === 0) {
-        const { [wineId]: _, ...rest } = prevSelected;
-        return rest;
+    const existingItem = cartItems.find((wine) => wine.id === wineId);
+    if (existingItem) {
+      if (existingItem.quantity > 1) {
+        removeFromCart(existingItem);
       } else {
-        return { ...prevSelected, [wineId]: newQuantity };
+        removeFromCart(existingItem);
       }
-    });
+    }
   };
 
   const calculateTotal = () => {
