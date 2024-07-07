@@ -16,9 +16,7 @@ const Counter: React.FC<WineCounterProps> = ({
   };
 
   const handleDecrease = () => {
-    if (quantity > 1) {
-      onDecrease(wineId);
-    }
+    onDecrease(wineId);
   };
 
   const containerStyle = showDecreaseButton

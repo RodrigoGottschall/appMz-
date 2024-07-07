@@ -1,13 +1,18 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { CartItemCardProps } from "../../context/WineContext";
+import { CartItemCardProps, useWineContext } from "../../context/WineContext";
 import Counter from "./Counter";
 
-const CartItemCard: React.FC<CartItemCardProps> = ({
-  item,
-  onIncrease,
-  onDecrease,
-}) => {
+const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
+  const { addToCart, removeFromCart } = useWineContext();
+
+  const handleIncrease = () => {
+    addToCart(item);
+  };
+
+  const handleDecrease = () => {
+    removeFromCart(item);
+  };
   return (
     <View style={styles.cardContainer}>
       <Image source={item.image} style={styles.image} />
@@ -19,8 +24,8 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
 
         <Counter
           wineId={item.id}
-          onIncrease={onIncrease}
-          onDecrease={onDecrease}
+          onIncrease={handleIncrease}
+          onDecrease={handleDecrease}
           quantity={item.quantity}
         />
       </View>
