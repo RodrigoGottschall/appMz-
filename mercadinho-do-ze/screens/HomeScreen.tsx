@@ -5,14 +5,6 @@ import Footer from "../components/Footer";
 import Body from "../components/HomeScreen/Body";
 
 const HomeScreen = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <View style={styles.screen}>
       <View style={styles.container}>

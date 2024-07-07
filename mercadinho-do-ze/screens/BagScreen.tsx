@@ -9,7 +9,6 @@ import CartItemCard from "../components/BagScreen/CartItemCard";
 const BagScreen: React.FC = () => {
   const {
     cartItems,
-    selectedWines,
     addToCart,
     removeFromCart,
     setSelectedWines,
