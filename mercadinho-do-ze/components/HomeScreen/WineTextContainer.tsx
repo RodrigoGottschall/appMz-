@@ -6,11 +6,6 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import {
-  useFonts,
-  Nunito_400Regular,
-  Nunito_700Bold,
-} from "@expo-google-fonts/nunito";
 
 const WineTextContainer: React.FC = () => {
   const handleOpenLink = () => {
