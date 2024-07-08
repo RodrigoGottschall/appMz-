@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import WineTextContainer from "./WineTextContainer";
 
 const HeaderHome: React.FC = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [searchModalVisible, setSearchModalVisible] = useState(false);
+  const [notificationModalVisible, setNotificationModalVisible] =
+    useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const handleBellPress = () => {
-    setModalVisible(true);
+    setNotificationModalVisible(true);
+  };
+
+  const handleSearchPress = () => {
+    setSearchModalVisible(true);
   };
 
   return (
@@ -17,21 +31,44 @@ const HeaderHome: React.FC = () => {
           <Icon name="bell" size={12} color="#F7A833" />
         </TouchableOpacity>
         <Text style={styles.title}>Mercadinho do Zé</Text>
-        <Icon name="search" size={18} color="#F7A833" />
+        <TouchableOpacity onPress={handleSearchPress}>
+          <Icon name="search" size={18} color="#F7A833" />
+        </TouchableOpacity>
       </View>
 
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        visible={searchModalVisible}
+        onRequestClose={() => setSearchModalVisible(false)}
+      >
+        <View style={styles.searchModalContainer}>
+          <View style={styles.searchModalContent}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Pesquisar produtos..."
+              value={searchText}
+              onChangeText={setSearchText}
+            />
+            <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
+              <Text style={styles.closeButton}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={notificationModalVisible}
+        onRequestClose={() => setNotificationModalVisible(false)}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalText}>Não há notificações</Text>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
+            <TouchableOpacity
+              onPress={() => setNotificationModalVisible(false)}
+            >
               <Text style={styles.closeButton}>Fechar</Text>
             </TouchableOpacity>
           </View>
@@ -76,6 +113,26 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     color: "#F7A833",
+  },
+  searchModalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  searchModalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  searchInput: {
+    flex: 1,
+    marginRight: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    borderRadius: 5,
   },
 });
 
