@@ -49,10 +49,10 @@ const HeaderHome: React.FC = () => {
             <TextInput
               style={styles.searchInput}
               placeholder="Pesquisar produtos..."
-              value={searchText} // Usar o estado local
+              value={searchText}
               onChangeText={(text) => {
-                setSearchText(text); // Atualizar o estado local
-                filterWines(text); // Passar o texto diretamente para a função de filtro
+                setSearchText(text);
+                filterWines(text);
               }}
             />
             <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
