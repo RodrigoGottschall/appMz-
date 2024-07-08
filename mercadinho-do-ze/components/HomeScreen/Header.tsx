@@ -44,22 +44,31 @@ const HeaderHome: React.FC = () => {
         visible={searchModalVisible}
         onRequestClose={() => setSearchModalVisible(false)}
       >
-        <View style={styles.searchModalContainer}>
-          <View style={styles.searchModalContent}>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Pesquisar produtos..."
-              value={searchText}
-              onChangeText={(text) => {
-                setSearchText(text);
-                filterWines(text);
-              }}
-            />
-            <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
-              <Text style={styles.closeButton}>Cancelar</Text>
-            </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.modalBackground}
+          activeOpacity={1}
+          onPress={() => setSearchModalVisible(false)}
+        >
+          <View style={styles.searchModalContainer}>
+            <View style={styles.searchModalContent}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Pesquisar produtos..."
+                value={searchText}
+                onChangeText={(text) => {
+                  setSearchText(text);
+                  filterWines(text);
+                }}
+              />
+              <TouchableOpacity onPress={() => setSearchText("")}>
+                <Text style={styles.closeButton}>Limpar Filtro</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
+                <Text style={styles.closeButton}>Cancelar</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </Modal>
 
       <Modal
@@ -116,9 +125,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
-  closeButton: {
-    color: "#F7A833",
-  },
   searchModalContainer: {
     flex: 1,
     justifyContent: "center",
@@ -128,16 +134,24 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
-    flexDirection: "row",
-    alignItems: "center",
   },
   searchInput: {
-    flex: 1,
-    marginRight: 10,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    width: 300,
+    fontFamily: "Nunito_400Regular",
+  },
+  closeButton: {
+    color: "#F7A833",
+    fontFamily: "Nunito_400Regular",
+    textAlign: "center",
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 

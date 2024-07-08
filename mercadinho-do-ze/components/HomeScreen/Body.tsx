@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -41,6 +41,7 @@ const Body: React.FC = () => {
     setSelectedWines,
     searchText,
   } = useWineContext();
+  const [displayedWines, setDisplayedWines] = useState(wines);
 
   const handleWinePress = (wineId: number) => {
     const existingItem = cartItems.find((wine) => wine.id === wineId);
@@ -85,12 +86,11 @@ const Body: React.FC = () => {
   return (
     <View style={styles.bodyContainer}>
       <FlatList
-        data={wines.filter((wine) =>
-          wine.name.toLowerCase().includes(searchText.toLowerCase())
-        )}
+        data={displayedWines}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
         contentContainerStyle={styles.flatListContent}
+        extraData={displayedWines}
         renderItem={({ item }) => (
           <WineCard
             wine={item}
