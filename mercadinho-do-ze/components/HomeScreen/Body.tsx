@@ -86,11 +86,12 @@ const Body: React.FC = () => {
   return (
     <View style={styles.bodyContainer}>
       <FlatList
-        data={displayedWines}
+        data={wines.filter((wine) =>
+          wine.name.toLowerCase().includes(searchText.toLowerCase())
+        )}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
         contentContainerStyle={styles.flatListContent}
-        extraData={displayedWines}
         renderItem={({ item }) => (
           <WineCard
             wine={item}

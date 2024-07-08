@@ -60,12 +60,6 @@ const HeaderHome: React.FC = () => {
                   filterWines(text);
                 }}
               />
-              <TouchableOpacity onPress={() => setSearchText("")}>
-                <Text style={styles.closeButton}>Limpar Filtro</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
-                <Text style={styles.closeButton}>Cancelar</Text>
-              </TouchableOpacity>
             </View>
           </View>
         </TouchableOpacity>
@@ -138,20 +132,14 @@ const styles = StyleSheet.create({
   searchInput: {
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#000",
     padding: 10,
     borderRadius: 10,
     width: 300,
     fontFamily: "Nunito_400Regular",
   },
-  closeButton: {
-    color: "#F7A833",
-    fontFamily: "Nunito_400Regular",
-    textAlign: "center",
-  },
   modalBackground: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 
