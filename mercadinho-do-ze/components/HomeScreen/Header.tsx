@@ -141,6 +141,10 @@ const styles = StyleSheet.create({
   modalBackground: {
     flex: 1,
   },
+  closeButton: {
+    color: "#F7A833",
+    fontFamily: "Nunito_400Regular",
+  },
 });
 
 export default HeaderHome;
