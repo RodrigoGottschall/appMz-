@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -33,8 +33,14 @@ export const wines = [
 
 const Body: React.FC = () => {
   const navigation = useNavigation();
-  const { addToCart, cartItems, removeFromCart } = useWineContext();
-  const { selectedWines, setSelectedWines } = useWineContext();
+  const {
+    addToCart,
+    cartItems,
+    removeFromCart,
+    selectedWines,
+    setSelectedWines,
+    searchText,
+  } = useWineContext();
 
   const handleWinePress = (wineId: number) => {
     const existingItem = cartItems.find((wine) => wine.id === wineId);
@@ -79,7 +85,9 @@ const Body: React.FC = () => {
   return (
     <View style={styles.bodyContainer}>
       <FlatList
-        data={wines}
+        data={wines.filter((wine) =>
+          wine.name.toLowerCase().includes(searchText.toLowerCase())
+        )}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
         contentContainerStyle={styles.flatListContent}

@@ -9,12 +9,14 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import WineTextContainer from "./WineTextContainer";
+import { useWineContext } from "../../context/WineContext";
 
 const HeaderHome: React.FC = () => {
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [notificationModalVisible, setNotificationModalVisible] =
     useState(false);
   const [searchText, setSearchText] = useState("");
+  const { filterWines } = useWineContext();
 
   const handleBellPress = () => {
     setNotificationModalVisible(true);
@@ -47,8 +49,11 @@ const HeaderHome: React.FC = () => {
             <TextInput
               style={styles.searchInput}
               placeholder="Pesquisar produtos..."
-              value={searchText}
-              onChangeText={setSearchText}
+              value={searchText} // Usar o estado local
+              onChangeText={(text) => {
+                setSearchText(text); // Atualizar o estado local
+                filterWines(text); // Passar o texto diretamente para a função de filtro
+              }}
             />
             <TouchableOpacity onPress={() => setSearchModalVisible(false)}>
               <Text style={styles.closeButton}>Cancelar</Text>

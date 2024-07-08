@@ -18,6 +18,8 @@ export interface WineContextType {
     React.SetStateAction<{ [wineId: number]: number }>
   >;
   setCartItems: React.Dispatch<React.SetStateAction<WineItem[]>>;
+  filterWines: (searchText: string) => void;
+  searchText: string;
 }
 
 export interface WineCardProps {
@@ -67,6 +69,11 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectedWines, setSelectedWines] = useState<{
     [wineId: number]: number;
   }>({});
+  const [searchText, setSearchText] = useState("");
+
+  const filterWines = (text: string) => {
+    setSearchText(text);
+  };
 
   const addToCart = (item: WineItem) => {
     setCartItems((prevCartItems) => {
@@ -147,6 +154,8 @@ export const WineProvider: React.FC<{ children: React.ReactNode }> = ({
         selectedWines,
         setSelectedWines,
         setCartItems,
+        filterWines,
+        searchText,
       }}
     >
       {children}
